@@ -3,6 +3,7 @@
 namespace ByTIC\Omnipay\Mobilpay\Tests;
 
 use ByTIC\Omnipay\Mobilpay\Gateway;
+use ByTIC\Omnipay\Mobilpay\Message\PurchaseRequest;
 
 /**
  * Class HelperTest
@@ -31,5 +32,13 @@ class GatewayTest extends AbstractTest
             'https://secure.mobilpay.ro',
             $gateway->getEndpointUrl()
         );
+    }
+
+    public function testPurchaseRequestEndpointUrl()
+    {
+        $gateway = new Gateway();
+
+        $request = $gateway->purchase();
+        self::assertInstanceOf(PurchaseRequest::class, $request);
     }
 }

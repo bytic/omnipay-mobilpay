@@ -16,68 +16,68 @@ abstract class AbstractRequest extends CommonAbstractRequest
     /**
      * @return mixed
      */
-    public function getSiteId()
+    public function getSignature()
     {
-        return $this->getParameter('siteId');
+        return $this->getParameter('signature');
     }
 
     /**
      * @param $value
      * @return CommonAbstractRequest
      */
-    public function setSiteId($value)
+    public function setSignature($value)
     {
-        return $this->setParameter('siteId', $value);
+        return $this->setParameter('signature', $value);
     }
 
     /**
      * @return mixed
      */
-    public function getApiKey()
+    public function getCertificate()
     {
-        return $this->getParameter('apiKey');
+        return $this->getParameter('certificate');
     }
 
     /**
      * @param $value
      * @return CommonAbstractRequest
      */
-    public function setApiKey($value)
+    public function setCertificate($value)
     {
-        return $this->setParameter('apiKey', $value);
+        return $this->setParameter('certificate', $value);
     }
 
     /**
      * @return mixed
      */
-    public function getApiUrl()
+    public function getPrivateKey()
     {
-        return $this->getParameter('apiUrl');
+        return $this->getParameter('privateKey');
     }
 
     /**
      * @param $value
      * @return CommonAbstractRequest
      */
-    public function setApiUrl($value)
+    public function setPrivateKey($value)
     {
-        return $this->setParameter('apiUrl', $value);
+        return $this->setParameter('privateKey', $value);
     }
 
     /**
      * @return mixed
      */
-    public function getSecureUrl()
+    public function getEndpointUrl()
     {
-        return $this->getParameter('secureUrl');
+        return $this->getParameter('endpointUrl');
     }
 
     /**
      * @param $value
      * @return CommonAbstractRequest
      */
-    public function setSecureUrl($value)
+    public function setEndpointUrl($value)
     {
-        return $this->setParameter('secureUrl', $value);
+        return $this->setParameter('endpointUrl', $value);
     }
 }

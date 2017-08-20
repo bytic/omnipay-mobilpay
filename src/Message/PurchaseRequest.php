@@ -2,50 +2,53 @@
 
 namespace ByTIC\Omnipay\Mobilpay\Message;
 
-use ByTIC\Common\Payments\Gateways\Providers\AbstractGateway\Message\PurchaseRequest as AbstractPurchaseRequest;
 use ByTIC\Common\Payments\Gateways\Providers\Mobilpay\Api\Address;
 use ByTIC\Common\Payments\Gateways\Providers\Mobilpay\Api\Invoice;
 use ByTIC\Common\Payments\Gateways\Providers\Mobilpay\Api\Request\Card;
-use ByTIC\Common\Payments\Gateways\Providers\Mobilpay\Message\Traits\ParamSettersRequestTrait;
+use ByTIC\Omnipay\Mobilpay\Message\Traits\RequestGetDataTrait;
 
 /**
  * PayU Purchase Request
  */
-class PurchaseRequest extends AbstractPurchaseRequest
+class PurchaseRequest extends AbstractRequest
 {
-    use ParamSettersRequestTrait;
+    use RequestGetDataTrait;
 
     /**
      * @var Card
      */
     protected $cardRequest = null;
 
-    protected $liveEndpoint = 'https://secure.mobilpay.ro';
-    protected $testEndpoint = 'http://sandboxsecure.mobilpay.ro';
+
+    /**
+     * @inheritdoc
+     */
+    public function initialize(array $parameters = [])
+    {
+        $parameters['currency'] = isset($parameters['currency']) ? $parameters['currency'] : 'ron';
+
+        return parent::initialize($parameters);
+    }
 
 
     /** @noinspection PhpMissingParentCallCommonInspection
      * @inheritdoc
      */
-    public function getData()
+    public function validateDataFields()
     {
-        $this->validate(
+        return [
             'amount', 'currency', 'orderId', 'orderName', 'orderDate',
             'notifyUrl', 'returnUrl', 'signature', 'certificate',
             'card'
-        );
-
-        $data = [];
-        $this->populateData($data);
-
-        return $data;
+        ];
     }
 
     /**
      * @param $data
      */
-    protected function populateData(&$data)
+    protected function populateData()
     {
+        $data = [];
         $this->populateMobilpayCardRequest();
         $card = $this->getMobilpayCardRequest();
         $data['env_key'] = $card->getEnvKey();
