@@ -5,7 +5,7 @@ namespace ByTIC\Omnipay\Mobilpay\Message;
 use ByTIC\Common\Payments\Gateways\Providers\Mobilpay\Api\Address;
 use ByTIC\Common\Payments\Gateways\Providers\Mobilpay\Api\Invoice;
 use ByTIC\Common\Payments\Gateways\Providers\Mobilpay\Api\Request\Card;
-use ByTIC\Omnipay\Mobilpay\Message\Traits\RequestGetDataTrait;
+use ByTIC\Omnipay\Common\Message\Traits\RequestGetDataTrait;
 
 /**
  * PayU Purchase Request
