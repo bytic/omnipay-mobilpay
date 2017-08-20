@@ -105,6 +105,9 @@ class Gateway extends AbstractGateway
             'signature' => $this->getSignature(),
             'certificate' => $this->getCertificate(),
             'privateKey' => $this->getPrivateKey(),
+            'card' => [
+                'first_name' => ''
+            ], //Add in order to generate the Card Object
         ];
     }
 

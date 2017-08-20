@@ -2,9 +2,10 @@
 
 namespace ByTIC\Omnipay\Mobilpay\Message;
 
-use ByTIC\Common\Payments\Gateways\Providers\Mobilpay\Api\Address;
-use ByTIC\Common\Payments\Gateways\Providers\Mobilpay\Api\Invoice;
-use ByTIC\Common\Payments\Gateways\Providers\Mobilpay\Api\Request\Card;
+use ByTIC\Omnipay\Common\Library\Signer;
+use ByTIC\Omnipay\Mobilpay\Models\Address;
+use ByTIC\Omnipay\Mobilpay\Models\Invoice;
+use ByTIC\Omnipay\Mobilpay\Models\Request\Card;
 use ByTIC\Omnipay\Common\Message\Traits\RequestGetDataTrait;
 
 /**
@@ -37,33 +38,46 @@ class PurchaseRequest extends AbstractRequest
     public function validateDataFields()
     {
         return [
-            'amount', 'currency', 'orderId', 'orderName', 'orderDate',
-            'notifyUrl', 'returnUrl', 'signature', 'certificate',
-            'card'
+            'signature',
+            'certificate',
+//            'privateKey',
+            'amount',
+            'orderId',
+//            'orderId', 'orderName', 'orderDate',
+//            'notifyUrl', 'returnUrl', 'signature', 'certificate',
+//            'card'
         ];
     }
 
     /**
-     * @param $data
+     * @inheritdoc
      */
     protected function populateData()
     {
         $data = [];
         $this->populateMobilpayCardRequest();
-        $card = $this->getMobilpayCardRequest();
-        $data['env_key'] = $card->getEnvKey();
-        $data['data'] = $card->getEncData();
+        $cardRequest = $this->getMobilpayCardRequest();
+
+        $signer = new Signer();
+        $signer->setCertificate($this->getCertificate());
+//        echo $cardRequest->getXML();die();
+        $sealedContent = $signer->sealContentWithRSA($cardRequest->getXML());
+        $data['env_key'] = base64_encode($sealedContent[1][0]);
+        $data['data'] = base64_encode($sealedContent[0]);
+        $data['redirectUrl'] = $this->getEndpointUrl();
+
+        return $data;
     }
 
     protected function populateMobilpayCardRequest()
     {
         $card = $this->getMobilpayCardRequest();
         $card->orderId = $this->getOrderId();
-        $card->returnUrl = $this->getReturnUrl();
-        $card->confirmUrl = $this->getNotifyUrl();
+        $card->returnUrl = ''.$this->getReturnUrl(); //Add spaces to add the item to the XML
+        $card->confirmUrl = ''.$this->getNotifyUrl(); //Add spaces to add the item to the XML
         $card->invoice = $this->generateMobilpayPaymentInvoice();
 
-        $card->encrypt($this->getCertificate());
+//        $card->encrypt($this->getCertificate());
     }
 
     /**
@@ -88,7 +102,7 @@ class PurchaseRequest extends AbstractRequest
         $invoice->currency = $this->getCurrency();
         $invoice->amount = $this->getAmount();
         $invoice->installments = '2,3';
-        $invoice->details = $this->getOrderName();
+        $invoice->details = $this->getDescription();
         $invoice->setBillingAddress($this->generateMobilpayPaymentBillingAddress());
         $invoice->setShippingAddress($this->generateMobilpayPaymentShippingAddress());
 

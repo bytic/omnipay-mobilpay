@@ -80,4 +80,20 @@ abstract class AbstractRequest extends CommonAbstractRequest
     {
         return $this->setParameter('endpointUrl', $value);
     }
+    /**
+     * @return string
+     */
+    public function getOrderId()
+    {
+        return $this->getParameter('orderId');
+    }
+
+    /**
+     * @param  string $value
+     * @return mixed
+     */
+    public function setOrderId($value)
+    {
+        return $this->setParameter('orderId', $value);
+    }
 }
