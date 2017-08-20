@@ -4,11 +4,10 @@
   "license": "MIT",
   "description": "Mobilpay driver for ThePhpLeague Omnipay multi-payment processing library",
   "keywords": [
-    "twispay",
+    "mobilpay",
     "driver",
     "gateway",
     "merchant",
-    "omnipay",
     "pay",
     "payment"
   ],
@@ -21,12 +20,12 @@
   ],
   "autoload": {
     "psr-4": {
-      "ByTIC\\Omnipay\\Twispay\\": "src/"
+      "ByTIC\\Omnipay\\Mobilpay\\": "src/"
     }
   },
   "autoload-dev": {
     "psr-4": {
-      "ByTIC\\Omnipay\\Twispay\\Tests\\": "tests/"
+      "ByTIC\\Omnipay\\Mobilpay\\Tests\\": "tests/"
     }
   },
   "require": {
