@@ -6,6 +6,10 @@ use ByTIC\Omnipay\Mobilpay\Message\PurchaseRequest;
 use ByTIC\Omnipay\Mobilpay\Message\PurchaseResponse;
 use Omnipay\Common\Exception\InvalidRequestException;
 
+/**
+ * Class PurchaseRequestTest
+ * @package ByTIC\Omnipay\Mobilpay\Tests\Message
+ */
 class PurchaseRequestTest extends AbstractRequestTest
 {
     public function testInitParameters()

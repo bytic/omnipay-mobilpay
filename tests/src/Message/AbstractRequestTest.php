@@ -34,5 +34,4 @@ abstract class AbstractRequestTest extends AbstractTest
         $request = new $class($client, $request);
         return $request;
     }
-
 }
