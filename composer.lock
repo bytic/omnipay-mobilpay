@@ -12,12 +12,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/ByTIC/omnipay-common.git",
-                "reference": "06a45d34a1453ef71fab004c5cd9528532dc4532"
+              "reference": "74291dff453808f55b7ed0c32fe51d6ef51e02ce"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ByTIC/omnipay-common/zipball/06a45d34a1453ef71fab004c5cd9528532dc4532",
-                "reference": "06a45d34a1453ef71fab004c5cd9528532dc4532",
+              "url": "https://api.github.com/repos/ByTIC/omnipay-common/zipball/74291dff453808f55b7ed0c32fe51d6ef51e02ce",
+              "reference": "74291dff453808f55b7ed0c32fe51d6ef51e02ce",
                 "shasum": ""
             },
             "require": {
@@ -52,7 +52,7 @@
                 "pay",
                 "payment"
             ],
-            "time": "2017-08-20T20:07:07+00:00"
+          "time": "2017-08-21T17:10:17+00:00"
         },
         {
             "name": "guzzle/guzzle",

@@ -74,7 +74,10 @@ abstract class AbstractRequest
     public $timestamp = null;
     public $type = self::PAYMENT_TYPE_SMS;
 
-    public $objPmNotify = null;
+    /**
+     * @var null|Notify
+     */
+    public $notifyResponse = null;
 
     /**
      * returnUrl (Optional)    - URL where the user is redirected from mobilpay.ro payment interface
@@ -133,46 +136,6 @@ abstract class AbstractRequest
     }
 
     /**
-     * @param $envKey
-     * @param $encData
-     * @param $privateKeyFilePath
-     * @param null $privateKeyPassword
-     * @return mixed
-     * @throws Exception
-     */
-    public static function factoryFromEncrypted($envKey, $encData, $privateKeyFilePath, $privateKeyPassword = null)
-    {
-        $privateKey = null;
-        if ($privateKeyPassword == null) {
-            $privateKey = @openssl_get_privatekey("file://{$privateKeyFilePath}");
-        } else {
-            $privateKey = @openssl_get_privatekey("file://{$privateKeyFilePath}", $privateKeyPassword);
-        }
-        if ($privateKey === false) {
-            throw new Exception('Error loading private key', self::ERROR_CONFIRM_LOAD_PRIVATE_KEY);
-        }
-
-        $srcData = base64_decode($encData);
-        if ($srcData === false) {
-            @openssl_free_key($privateKey);
-            throw new Exception('Failed decoding data', self::ERROR_CONFIRM_FAILED_DECODING_DATA);
-        }
-
-        $srcEnvKey = base64_decode($envKey);
-        if ($srcEnvKey === false) {
-            throw new Exception('Failed decoding envelope key', self::ERROR_CONFIRM_FAILED_DECODING_ENVELOPE_KEY);
-        }
-
-        $data = null;
-        $result = @openssl_open($srcData, $data, $srcEnvKey, $privateKey);
-        if ($result === false) {
-            throw new Exception('Failed decrypting data', self::ERROR_CONFIRM_FAILED_DECRYPT_DATA);
-        }
-
-        return self::factory($data);
-    }
-
-    /**
      * @param $data
      * @return Card|Sms|null
      */
@@ -184,10 +147,6 @@ abstract class AbstractRequest
             //try to create payment request from xml
             $objPmReq = self::factoryFromXml($xmlDoc);
             $objPmReq->setRequestInfo(self::VERSION_XML, $data);
-        } else {
-            //try to create payment request from query string
-            $objPmReq = self::factoryFromQueryString($data);
-            $objPmReq->setRequestInfo(self::VERSION_QUERY_STRING, $data);
         }
 
         return $objPmReq;
@@ -244,18 +203,6 @@ abstract class AbstractRequest
         $this->objRequestInfo = new stdClass();
         $this->objRequestInfo->reqVersion = $reqVersion;
         $this->objRequestInfo->reqData = $reqData;
-    }
-
-    /**
-     * @param $data
-     * @return Sms
-     */
-    protected static function factoryFromQueryString($data)
-    {
-        $objPmReq = new Sms();
-        $objPmReq->loadFromQueryString($data);
-
-        return $objPmReq;
     }
 
     /**
@@ -424,8 +371,8 @@ abstract class AbstractRequest
 
         $elems = $elem->getElementsByTagName('mobilpay');
         if ($elems->length == 1) {
-            $this->objPmNotify = new Notify();
-            $this->objPmNotify->loadFromXml($elems->item(0));
+            $this->notifyResponse = new Notify();
+            $this->notifyResponse->loadFromXml($elems->item(0));
         }
     }
 }

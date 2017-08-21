@@ -25,7 +25,8 @@
   },
   "autoload-dev": {
     "psr-4": {
-      "ByTIC\\Omnipay\\Mobilpay\\Tests\\": "tests/src"
+      "ByTIC\\Omnipay\\Mobilpay\\Tests\\": "tests/src",
+      "ByTIC\\Omnipay\\Mobilpay\\Tests\\Fixtures\\": "tests/fixtures"
     }
   },
   "require": {

@@ -15,6 +15,7 @@ class CompletePurchaseRequest extends AbstractRequest
     public function getData()
     {
         $data = [];
+        $data['orderId'] = $this->httpRequest->query->get('orderId');
 
         return $data;
     }

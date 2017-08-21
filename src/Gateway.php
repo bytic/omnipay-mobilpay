@@ -2,7 +2,9 @@
 
 namespace ByTIC\Omnipay\Mobilpay;
 
+use ByTIC\Omnipay\Mobilpay\Message\CompletePurchaseRequest;
 use ByTIC\Omnipay\Mobilpay\Message\PurchaseRequest;
+use ByTIC\Omnipay\Mobilpay\Message\ServerCompletePurchaseRequest;
 use Omnipay\Common\AbstractGateway;
 use Omnipay\Common\Message\RequestInterface;
 
@@ -60,6 +62,7 @@ class Gateway extends AbstractGateway
 
     /**
      * @inheritdoc
+     * @return PurchaseRequest
      */
     public function purchase(array $parameters = []): RequestInterface
     {
@@ -120,6 +123,7 @@ class Gateway extends AbstractGateway
         $defaultUrl = $this->getTestMode() === false
             ? $this->endpointLive
             : $this->endpointSandbox;
+
         return $this->parameters->get('endpointUrl', $defaultUrl);
     }
 
@@ -130,6 +134,7 @@ class Gateway extends AbstractGateway
     public function setTestMode($value)
     {
         $this->parameters->remove('endpointUrl');
+
         return parent::setTestMode($value);
     }
 

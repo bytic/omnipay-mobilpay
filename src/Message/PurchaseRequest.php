@@ -3,17 +3,20 @@
 namespace ByTIC\Omnipay\Mobilpay\Message;
 
 use ByTIC\Omnipay\Common\Library\Signer;
+use ByTIC\Omnipay\Common\Message\Traits\RequestDataGetWithValidationTrait;
 use ByTIC\Omnipay\Mobilpay\Models\Address;
 use ByTIC\Omnipay\Mobilpay\Models\Invoice;
 use ByTIC\Omnipay\Mobilpay\Models\Request\Card;
-use ByTIC\Omnipay\Common\Message\Traits\RequestGetDataTrait;
 
 /**
- * PayU Purchase Request
+ * Class PurchaseRequest
+ * @package ByTIC\Omnipay\Mobilpay\Message
+ *
+ * @method PurchaseResponse send()
  */
 class PurchaseRequest extends AbstractRequest
 {
-    use RequestGetDataTrait;
+    use RequestDataGetWithValidationTrait;
 
     /**
      * @var Card
