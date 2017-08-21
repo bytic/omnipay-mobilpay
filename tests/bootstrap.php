@@ -9,4 +9,5 @@ require dirname(__DIR__) . '/vendor/autoload.php';
 if (file_exists(__DIR__ . DIRECTORY_SEPARATOR . '.env')) {
     $enviroment = new Dotenv\Dotenv(__DIR__);
     $enviroment->load();
+    $_ENV['MOBILPAY_CERTIFICATE'] = base64_decode($_ENV['MOBILPAY_CERTIFICATE']);
 }
