@@ -32,7 +32,7 @@
   "require": {
     "php": "^7.0",
     "omnipay/common": "^2.3",
-    "bytic/omnipay-common": "dev-develop"
+    "bytic/omnipay-common": "^1.0"
   },
   "require-dev": {
     "squizlabs/php_codesniffer": "^3.0",
