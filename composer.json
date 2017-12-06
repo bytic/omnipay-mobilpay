@@ -1,0 +1,43 @@
+{
+  "name": "bytic/omnipay-mobilpay",
+  "type": "library",
+  "license": "MIT",
+  "description": "Mobilpay driver for ThePhpLeague Omnipay multi-payment processing library",
+  "keywords": [
+    "mobilpay",
+    "driver",
+    "gateway",
+    "merchant",
+    "pay",
+    "payment"
+  ],
+  "homepage": "https://github.com/ByTIC/omnipay-mobilpay",
+  "authors": [
+    {
+      "name": "Gabriel Solomon",
+      "email": "hello@gabrielsolomon.ro"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "ByTIC\\Omnipay\\Mobilpay\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "ByTIC\\Omnipay\\Mobilpay\\Tests\\": "tests/src",
+      "ByTIC\\Omnipay\\Mobilpay\\Tests\\Fixtures\\": "tests/fixtures"
+    }
+  },
+  "require": {
+    "php": "^7.0",
+    "omnipay/common": "^2.3",
+    "bytic/omnipay-common": "dev-develop"
+  },
+  "require-dev": {
+    "squizlabs/php_codesniffer": "^3.0",
+    "phpunit/phpunit": "^6.2",
+    "vlucas/phpdotenv": "^2.3",
+    "mockery/mockery": "^0.9"
+  }
+}
