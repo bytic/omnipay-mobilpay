@@ -17,7 +17,6 @@ use Guzzle\Http\Client as HttpClient;
  */
 class ServerCompletePurchaseRequestTest extends AbstractRequestTest
 {
-
     public function testDecodeXML()
     {
         $client = new HttpClient();
