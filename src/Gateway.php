@@ -188,5 +188,4 @@ class Gateway extends AbstractGateway
     {
         $this->privateKey = $privateKey;
     }
-
 }
