@@ -1,14 +1,14 @@
 <?php
 
-define('PROJECT_BASE_PATH', __DIR__ . '/..');
+define('PROJECT_BASE_PATH', __DIR__.'/..');
 define('TEST_BASE_PATH', __DIR__);
-define('TEST_FIXTURE_PATH', __DIR__ . DIRECTORY_SEPARATOR . 'fixtures');
+define('TEST_FIXTURE_PATH', __DIR__.DIRECTORY_SEPARATOR.'fixtures');
 
-require dirname(__DIR__) . '/vendor/autoload.php';
+require dirname(__DIR__).'/vendor/autoload.php';
 
-if (file_exists(__DIR__ . DIRECTORY_SEPARATOR . '.env')) {
+if (file_exists(__DIR__.DIRECTORY_SEPARATOR.'.env')) {
     $enviroment = new Dotenv\Dotenv(__DIR__);
     $enviroment->load();
-    $_ENV['MOBILPAY_CERTIFICATE'] = base64_decode($_ENV['MOBILPAY_CERTIFICATE']);
-    $_ENV['MOBILPAY_KEY'] = base64_decode($_ENV['MOBILPAY_KEY']);
+    putenv('MOBILPAY_CERTIFICATE='.base64_decode(getenv('MOBILPAY_CERTIFICATE')));
+    putenv('MOBILPAY_KEY='.base64_decode(getenv('MOBILPAY_KEY')));
 }

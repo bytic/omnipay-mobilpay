@@ -24,13 +24,13 @@ class ServerCompletePurchaseRequestTest extends AbstractRequestTest
         $request = new ServerCompletePurchaseRequest($client, $httpRequest);
 
         $data = [
-            'signature' => $_ENV['MOBILPAY_SIGNATURE'],
-            'certificate' => $_ENV['MOBILPAY_CERTIFICATE'],
-            'privateKey' => $_ENV['MOBILPAY_KEY'],
+            'signature' => getenv('MOBILPAY_SIGNATURE'),
+            'certificate' => getenv('MOBILPAY_CERTIFICATE'),
+            'privateKey' => getenv('MOBILPAY_KEY'),
         ];
         $request->initialize($data);
 
-        self::assertSame(
+        self::assertEquals(
             file_get_contents(TEST_FIXTURE_PATH.'/requests/serverCompletePurchase.xml'),
             $request->getDecodedXML()
         );
@@ -105,9 +105,9 @@ class ServerCompletePurchaseRequestTest extends AbstractRequestTest
         $request = new ServerCompletePurchaseRequest($client, $httpRequest);
 
         $data = [
-            'signature' => $_ENV['MOBILPAY_SIGNATURE'],
-            'certificate' => $_ENV['MOBILPAY_CERTIFICATE'],
-            'privateKey' => $_ENV['MOBILPAY_KEY'],
+            'signature' => getenv('MOBILPAY_SIGNATURE'),
+            'certificate' => getenv('MOBILPAY_CERTIFICATE'),
+            'privateKey' => getenv('MOBILPAY_KEY'),
         ];
         $request->initialize($data);
         $response = $request->send();

@@ -5,10 +5,10 @@ require 'init.php';
 $gateway = new \ByTIC\Omnipay\Mobilpay\Gateway();
 
 $parameters = [
-    'signature' => $_ENV['MOBILPAY_SIGNATURE'],
-    'certificate' => $_ENV['MOBILPAY_CERTIFICATE'],
-    'privateKey' => $_ENV['MOBILPAY_KEY'],
-    'orderId' => 99999,
+    'signature' => getenv('MOBILPAY_SIGNATURE'),
+    'certificate' => getenv('MOBILPAY_CERTIFICATE'),
+    'privateKey' => getenv('MOBILPAY_KEY'),
+    'orderId' => 1,
     'amount' => 20.00,
 //    'card' => ['first_name' => 'Gabriel','last_name' => 'Solomon'],
 ];

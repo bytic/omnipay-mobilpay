@@ -46,10 +46,10 @@ class PurchaseRequestTest extends AbstractRequestTest
     public function testSend()
     {
         $data = [
-            'signature' => $_ENV['MOBILPAY_SIGNATURE'],
-            'certificate' => $_ENV['MOBILPAY_CERTIFICATE'],
-            'privateKey' => $_ENV['MOBILPAY_KEY'],
-            'orderId' => 99999,
+            'signature' => getenv('MOBILPAY_SIGNATURE'),
+            'certificate' => getenv('MOBILPAY_CERTIFICATE'),
+            'privateKey' => getenv('MOBILPAY_KEY'),
+            'orderId' => 1,
             'endpointUrl' => 'http://sandboxsecure.mobilpay.ro',
             'card' => [
                 'first_name' => '',
