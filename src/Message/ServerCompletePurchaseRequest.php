@@ -38,7 +38,7 @@ class ServerCompletePurchaseRequest extends AbstractRequest
     /**
      * @return mixed
      */
-    protected function isValidNotification()
+    public function isValidNotification()
     {
         return $this->hasPOST('env_key') || $this->hasPOST('data');
     }
