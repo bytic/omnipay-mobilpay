@@ -41,4 +41,18 @@ class GatewayTest extends AbstractTest
         $request = $gateway->purchase();
         self::assertInstanceOf(PurchaseRequest::class, $request);
     }
+
+    public function testSetCertificateFile()
+    {
+        $gateway = new Gateway();
+        $gateway->setCertificate(TEST_FIXTURE_PATH.'/files/public.cer');
+        self::assertSame('CERTIFICATE', $gateway->getCertificate());
+    }
+
+    public function testSetPrivateKeyFile()
+    {
+        $gateway = new Gateway();
+        $gateway->setPrivateKey(TEST_FIXTURE_PATH.'/files/private.key');
+        self::assertSame('KEY', $gateway->getPrivateKey());
+    }
 }

@@ -104,7 +104,7 @@ class Gateway extends AbstractGateway
     public function getDefaultParameters()
     {
         return [
-            'testMode' => true, // Must be the 1st in the list!
+            'testMode' => $this->getTestMode(), // Must be the 1st in the list!
             'signature' => $this->getSignature(),
             'certificate' => $this->getCertificate(),
             'privateKey' => $this->getPrivateKey(),
@@ -169,6 +169,9 @@ class Gateway extends AbstractGateway
      */
     public function setCertificate($certificate)
     {
+        if (file_exists($certificate)) {
+            $certificate = file_get_contents($certificate);
+        }
         $this->certificate = $certificate;
     }
 
@@ -186,6 +189,9 @@ class Gateway extends AbstractGateway
      */
     public function setPrivateKey(string $privateKey)
     {
+        if (file_exists($privateKey)) {
+            $privateKey = file_get_contents($privateKey);
+        }
         $this->privateKey = $privateKey;
     }
 }

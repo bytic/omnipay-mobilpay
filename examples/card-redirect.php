@@ -3,14 +3,17 @@
 require 'init.php';
 
 $gateway = new \ByTIC\Omnipay\Mobilpay\Gateway();
+$gateway->initialize([
+    'signature' => getenv('MOBILPAY_SIGNATURE'),
+    'certificate' => getenv('MOBILPAY_PUBLIC_CER'),
+    'privateKey' => getenv('MOBILPAY_PRIVATE_KEY'),
+    'testMode' => false,
+]);
 
 $parameters = [
-    'signature' => $_ENV['MOBILPAY_SIGNATURE'],
-    'certificate' => $_ENV['MOBILPAY_CERTIFICATE'],
-    'privateKey' => $_ENV['MOBILPAY_KEY'],
-    'orderId' => 99999,
     'amount' => 20.00,
-//    'card' => ['first_name' => 'Gabriel','last_name' => 'Solomon'],
+    'orderId' => 999,
+    'card' => ['firstName' => 'Gabriel', 'lastName' => 'Solomon'],
 ];
 $request = $gateway->purchase($parameters);
 $response = $request->send();

@@ -46,15 +46,22 @@ class PurchaseRequestTest extends AbstractRequestTest
     public function testSend()
     {
         $data = [
-            'signature' => $_ENV['MOBILPAY_SIGNATURE'],
-            'certificate' => $_ENV['MOBILPAY_CERTIFICATE'],
-            'privateKey' => $_ENV['MOBILPAY_KEY'],
-            'orderId' => 99999,
-            'endpointUrl' => 'http://sandboxsecure.mobilpay.ro',
-            'card' => [
-                'first_name' => '',
-            ],
+            'signature' => getenv('MOBILPAY_SIGNATURE'),
+            'certificate' => getenv('MOBILPAY_PUBLIC_CER'),
+            'privateKey' => getenv('MOBILPAY_PRIVATE_KEY'),
+
             'amount' => 20.00,
+
+            'orderId' => 999,
+            'orderName' => 'Test order',
+            'orderDate' => '',
+
+            'endpointUrl' => 'https://secure.mobilpay.ro',
+            'card' => [
+                'firstName' => 'Test',
+                'lastName' => 'Test',
+                'email' => 'test@bytic.ro',
+            ]
         ];
         $request = $this->newRequestWithInitTest(PurchaseRequest::class, $data);
 
