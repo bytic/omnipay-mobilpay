@@ -28,6 +28,6 @@ class CompletePurchaseRequest extends AbstractRequest
      */
     public function isValidNotification()
     {
-        return $this->hasGET('hash') && $this->hasGET('orderId');
+        return $this->hasGET('orderId');
     }
 }
