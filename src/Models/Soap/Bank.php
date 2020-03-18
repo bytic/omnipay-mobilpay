@@ -65,9 +65,15 @@ class Bank extends AbstractModel
 
     /**
      * @param string $iban
+     * @throws \Exception
      */
     public function setIban(string $iban)
     {
+        $iban = strtoupper(str_replace(' ', '', $iban));
+
+        if (!preg_match('/^[a-zA-Z]{2}[0-9]{2}[a-zA-Z0-9]{4}[0-9]{7}([a-zA-Z0-9]?){0,16}$/', $iban)) {
+            throw new \Exception("'{$iban}' nu respecta formatul IBAN");
+        }
         $this->iban = $iban;
     }
 }

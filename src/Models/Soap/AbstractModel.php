@@ -2,6 +2,9 @@
 
 namespace ByTIC\Omnipay\Mobilpay\Models\Soap;
 
+use Omnipay\Common\Helper;
+use stdClass;
+
 /**
  * Class AbstractModel
  * @package ByTIC\Omnipay\Mobilpay\Models\Soap
@@ -45,6 +48,24 @@ abstract class AbstractModel
     }
 
     /**
+     * @return stdClass
+     */
+    public function toSoap()
+    {
+        $properties = get_object_vars($this);
+        $ignored = $this->toArrayIgnoredFields();
+        foreach ($ignored as $ignore) {
+            unset($properties[$ignore]);
+        }
+        $return = new stdClass();
+        foreach ($properties as $name => $value) {
+            $return->{$name} = is_object($this->{$name}) ? $this->{$name}->toSoap() : $value;
+        }
+
+        return $return;
+    }
+
+    /**
      * @return array
      */
     protected function toArrayIgnoredFields()
@@ -58,8 +79,11 @@ abstract class AbstractModel
     protected function initFromArray($params)
     {
         foreach ($params as $name => $value) {
+            $methodName = 'set'.ucfirst(Helper::camelCase($name));
             if (is_object($this->{$name})) {
                 $this->{$name}->initFromArray($value);
+            } elseif (method_exists($this, $methodName)) {
+                $this->$methodName($value);
             } else {
                 $this->{$name} = $value;
             }

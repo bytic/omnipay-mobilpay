@@ -28,9 +28,15 @@ class Contact extends AbstractModel
 
     /**
      * @param string $phone
+     * @throws \Exception
      */
     public function setPhone(string $phone)
     {
+        $phone = str_replace(' ', '', $phone);
+
+        if (!preg_match('/^[0-9]{9,10}$/', $phone)) {
+            throw new \Exception("Numarul de telefon verificat '{$phone}' nu are un format invalid!");
+        }
         $this->phone = $phone;
     }
 

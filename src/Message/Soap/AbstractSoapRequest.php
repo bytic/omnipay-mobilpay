@@ -156,4 +156,5 @@ abstract class AbstractSoapRequest extends OmnipayAbstractRequest
     {
         return SoapResponse::class;
     }
+
 }

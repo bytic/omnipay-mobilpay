@@ -53,6 +53,19 @@ abstract class AbstractListModel extends AbstractModel
     /**
      * @inheritDoc
      */
+    public function toSoap()
+    {
+        $return = [];
+        foreach ($this->items as $contact) {
+            $return[] = $contact->toSoap();
+        }
+
+        return $return;
+    }
+
+    /**
+     * @inheritDoc
+     */
     protected function initFromArray($params)
     {
         $keys = array_keys($params);

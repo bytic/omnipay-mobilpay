@@ -157,6 +157,11 @@ class Company extends AbstractModel
      */
     public function setRegCode(string $reg_code)
     {
+        $reg_code = strtoupper(str_replace(' ', '', $reg_code));
+
+        if (!preg_match('~^J[0-9]{2}/[0-9]{2,6}/(19|20)[0-9]{2}$~', $reg_code)) {
+            throw new \Exception("'{$reg_code}' nu respecta tiparul 'JNN/NNNN/NNNN'");
+        }
         $this->reg_code = $reg_code;
     }
 
