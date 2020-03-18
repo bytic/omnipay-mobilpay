@@ -3,13 +3,13 @@
 namespace ByTIC\Omnipay\Mobilpay\Message;
 
 use ByTIC\Omnipay\Common\Message\Traits\SendDataRequestTrait;
-use Omnipay\Common\Message\AbstractRequest as CommonAbstractRequest;
+use Omnipay\Common\Message\AbstractRequest as OmnipayAbstractRequest;
 
 /**
  * Class AbstractRequest
  * @package ByTIC\Omnipay\Mobilpay\Message
  */
-abstract class AbstractRequest extends CommonAbstractRequest
+abstract class AbstractRequest extends OmnipayAbstractRequest
 {
     use SendDataRequestTrait;
 
@@ -23,7 +23,7 @@ abstract class AbstractRequest extends CommonAbstractRequest
 
     /**
      * @param $value
-     * @return CommonAbstractRequest
+     * @return OmnipayAbstractRequest
      */
     public function setSignature($value)
     {
@@ -40,7 +40,7 @@ abstract class AbstractRequest extends CommonAbstractRequest
 
     /**
      * @param $value
-     * @return CommonAbstractRequest
+     * @return OmnipayAbstractRequest
      */
     public function setCertificate($value)
     {
@@ -57,7 +57,7 @@ abstract class AbstractRequest extends CommonAbstractRequest
 
     /**
      * @param $value
-     * @return CommonAbstractRequest
+     * @return OmnipayAbstractRequest
      */
     public function setPrivateKey($value)
     {
@@ -74,7 +74,7 @@ abstract class AbstractRequest extends CommonAbstractRequest
 
     /**
      * @param $value
-     * @return CommonAbstractRequest
+     * @return OmnipayAbstractRequest
      */
     public function setEndpointUrl($value)
     {
