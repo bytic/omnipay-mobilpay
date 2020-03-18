@@ -3,16 +3,17 @@
 namespace ByTIC\Omnipay\Mobilpay\Models\Soap;
 
 /**
- * Class ContactList
+ * Class SellerAccountList
  * @package ByTIC\Omnipay\Mobilpay\Models\Soap
  */
-class ContactList extends AbstractListModel
+class SellerAccountList extends AbstractListModel
 {
+
     /**
      * @inheritDoc
      */
     protected static function itemClass()
     {
-        return Contact::class;
+        return SellerAccount::class;
     }
 }

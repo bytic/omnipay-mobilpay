@@ -21,8 +21,8 @@ class UserTest extends AbstractTest
             'username' => 'test',
             'password' => 'test-pass#123',
             'person' => [
-                'first_name' => '',
-                'last_name' => '',
+                'first_name' => 'John',
+                'last_name' => 'Foe',
                 'contacts' => [
                     'phone' => '123',
                     'email' => 'test@galantom.ro',
@@ -46,7 +46,7 @@ class UserTest extends AbstractTest
         self::assertInstanceOf(ContactList::class, $contacts);
 
         /** @var Contact $contact */
-        $contactsArray = $contacts->getContacts();
+        $contactsArray = $contacts->getItems();
         $contact = reset($contactsArray);
         self::assertInstanceOf(Contact::class, $contact);
         self::assertSame($data['person']['contacts']['phone'], $contact->getPhone());
