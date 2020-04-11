@@ -132,31 +132,7 @@ class Sms extends AbstractRequest
             );
         }
 
-        $this->xmlDoc = new DOMDocument('1.0', 'utf-8');
-        $rootElem = $this->xmlDoc->createElement('order');
-
-        //set payment type attribute
-        $xmlAttr = $this->xmlDoc->createAttribute('type');
-        $xmlAttr->nodeValue = $this->type;
-        $rootElem->appendChild($xmlAttr);
-
-        //set id attribute
-        $xmlAttr = $this->xmlDoc->createAttribute('id');
-        $xmlAttr->nodeValue = $this->orderId;
-        $rootElem->appendChild($xmlAttr);
-
-        //set timestamp attribute
-        $xmlAttr = $this->xmlDoc->createAttribute('timestamp');
-        $xmlAttr->nodeValue = date('YmdHis');
-        $rootElem->appendChild($xmlAttr);
-
-        $xmlElem = $this->xmlDoc->createElement('signature');
-        $xmlElem->nodeValue = $this->signature;
-        $rootElem->appendChild($xmlElem);
-
-        $xmlElem = $this->xmlDoc->createElement('service');
-        $xmlElem->nodeValue = $this->service;
-        $rootElem->appendChild($xmlElem);
+        $rootElem = $this->initXmlOrderDocument();
 
         if (!is_null($this->msisdn)) {
             $xmlElem = $this->xmlDoc->createElement('msisdn');
@@ -164,40 +140,8 @@ class Sms extends AbstractRequest
             $rootElem->appendChild($xmlElem);
         }
 
-        if (is_array($this->params) && sizeof($this->params) > 0) {
-            $xmlParams = $this->xmlDoc->createElement('params');
-            foreach ($this->params as $key => $value) {
-                $xmlParam = $this->xmlDoc->createElement('param');
-
-                $xmlName = $this->xmlDoc->createElement('name');
-                $xmlName->nodeValue = trim($key);
-                $xmlParam->appendChild($xmlName);
-
-                $xmlValue = $this->xmlDoc->createElement('value');
-                $xmlValue->appendChild($this->xmlDoc->createCDATASection(urlencode($value)));
-                $xmlParam->appendChild($xmlValue);
-
-                $xmlParams->appendChild($xmlParam);
-            }
-
-            $rootElem->appendChild($xmlParams);
-        }
-
-        if (!is_null($this->returnUrl) || !is_null($this->confirmUrl)) {
-            $xmlUrl = $this->xmlDoc->createElement('url');
-            if (!is_null($this->returnUrl)) {
-                $xmlElem = $this->xmlDoc->createElement('return');
-                $xmlElem->nodeValue = $this->returnUrl;
-                $xmlUrl->appendChild($xmlElem);
-            }
-            if (!is_null($this->confirmUrl)) {
-                $xmlElem = $this->xmlDoc->createElement('confirm');
-                $xmlElem->nodeValue = $this->confirmUrl;
-                $xmlUrl->appendChild($xmlElem);
-            }
-
-            $rootElem->appendChild($xmlUrl);
-        }
+        $this->appendXmlParams($rootElem);
+        $this->appendReturnUrl($rootElem);
 
         $this->xmlDoc->appendChild($rootElem);
 

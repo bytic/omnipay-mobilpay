@@ -3,7 +3,7 @@
 namespace ByTIC\Omnipay\Mobilpay\Models\Request;
 
 use ByTIC\Omnipay\Mobilpay\Models\Invoice;
-use DOMDocument;
+use ByTIC\Omnipay\Mobilpay\Models\PaymentSplit;
 use DOMElement;
 use Exception;
 
@@ -20,9 +20,36 @@ class Card extends AbstractRequest
     const ERROR_LOAD_FROM_XML_ORDER_INVOICE_ELEM_MISSING = 0x30000001;
 
     /**
+     *
+     * customer types
+     * @var integer
+     */
+    const CUSTOMER_TYPE_MERCHANT = 0x01;
+    const CUSTOMER_TYPE_MOBILPAY = 0x02;
+
+    /**
      * @var Invoice
      */
     public $invoice = null;
+
+    /**
+     *
+     * recurrent informations object
+     * @var Mobilpay_Payment_Recurrence
+     */
+    public $recurrence = null;
+
+    /**
+     * split informations
+     * @var PaymentSplit
+     */
+    public $split = null;
+
+
+    /**
+     * paymentInstrument
+     */
+    public $paymentInstrument = null;
 
     /**
      * AbstractRequest constructor.
@@ -42,18 +69,65 @@ class Card extends AbstractRequest
     {
         parent::parseFromXml($elem);
 
+        $this->loadFromXmlInvoice($elem);
+        $this->loadFromXmlRecurrence($elem);
+        $this->loadFromXmlPaymentSplit($elem);
+        $this->loadFromXmlPaymentInstrument($elem);
+
+        return $this;
+    }
+
+    /**
+     * @param DOMElement $elem
+     * @throws Exception
+     */
+    protected function loadFromXmlInvoice(DOMElement $elem)
+    {
         //card request specific data
-        $elems = $elem->getElementsByTagName('invoice');
-        if ($elems->length != 1) {
+        $itemElements = $elem->getElementsByTagName('invoice');
+        if ($itemElements->length != 1) {
             throw new Exception(
                 'Mobilpay_Payment_Request_Card::loadFromXml failed; invoice element is missing',
                 self::ERROR_LOAD_FROM_XML_ORDER_INVOICE_ELEM_MISSING
             );
         }
+        $this->invoice = new Invoice($itemElements->item(0));
+    }
 
-        $this->invoice = new Invoice($elems->item(0));
+    /**
+     * @param DOMElement $elem
+     * @throws Exception
+     */
+    protected function loadFromXmlRecurrence(DOMElement $elem)
+    {
+//        $itemElements = $elem->getElementsByTagName('recurrence');
+//        if ($itemElements->length > 0) {
+//            $this->recurrence = new Mobilpay_Payment_Recurrence($itemElements->item(0));
+//        }
+    }
 
-        return $this;
+    /**
+     * @param DOMElement $elem
+     * @throws Exception
+     */
+    protected function loadFromXmlPaymentSplit(DOMElement $elem)
+    {
+        $itemElements = $elem->getElementsByTagName('split');
+        if ($itemElements->length > 0) {
+            $this->split = new PaymentSplit($itemElements->item(0));
+        }
+    }
+
+    /**
+     * @param DOMElement $elem
+     * @throws Exception
+     */
+    protected function loadFromXmlPaymentInstrument(DOMElement $elem)
+    {
+//        $itemElements = $elem->getElementsByTagName('payment_instrument');
+//        if ($itemElements->length > 0) {
+//            $this->paymentInstrument = new Mobilpay_Payment_Instrument_Card($itemElements->item(0));
+//        }
     }
 
     /**
@@ -69,68 +143,69 @@ class Card extends AbstractRequest
             );
         }
 
-        $this->xmlDoc = new DOMDocument('1.0', 'utf-8');
-        $rootElem = $this->xmlDoc->createElement('order');
-
-        //set payment type attribute
-        $xmlAttr = $this->xmlDoc->createAttribute('type');
-        $xmlAttr->nodeValue = $this->type;
-        $rootElem->appendChild($xmlAttr);
-
-        //set id attribute
-        $xmlAttr = $this->xmlDoc->createAttribute('id');
-        $xmlAttr->nodeValue = $this->orderId;
-        $rootElem->appendChild($xmlAttr);
-
-        //set timestamp attribute
-        $xmlAttr = $this->xmlDoc->createAttribute('timestamp');
-        $xmlAttr->nodeValue = date('YmdHis');
-        $rootElem->appendChild($xmlAttr);
-
-        $xmlElem = $this->xmlDoc->createElement('signature');
-        $xmlElem->nodeValue = $this->signature;
-        $rootElem->appendChild($xmlElem);
-
-        $xmlElem = $this->invoice->createXmlElement($this->xmlDoc);
-        $rootElem->appendChild($xmlElem);
-
-        if (is_array($this->params) && sizeof($this->params) > 0) {
-            $xmlParams = $this->xmlDoc->createElement('params');
-            foreach ($this->params as $key => $value) {
-                $xmlParam = $this->xmlDoc->createElement('param');
-
-                $xmlName = $this->xmlDoc->createElement('name');
-                $xmlName->nodeValue = trim($key);
-                $xmlParam->appendChild($xmlName);
-
-                $xmlValue = $this->xmlDoc->createElement('value');
-                $xmlValue->appendChild($this->xmlDoc->createCDATASection($value));
-                $xmlParam->appendChild($xmlValue);
-
-                $xmlParams->appendChild($xmlParam);
-            }
-
-            $rootElem->appendChild($xmlParams);
-        }
-
-        if (!is_null($this->returnUrl) || !is_null($this->confirmUrl)) {
-            $xmlUrl = $this->xmlDoc->createElement('url');
-            if (!is_null($this->returnUrl)) {
-                $xmlElem = $this->xmlDoc->createElement('return');
-                $xmlElem->nodeValue = $this->returnUrl;
-                $xmlUrl->appendChild($xmlElem);
-            }
-            if (!is_null($this->confirmUrl)) {
-                $xmlElem = $this->xmlDoc->createElement('confirm');
-                $xmlElem->nodeValue = $this->confirmUrl;
-                $xmlUrl->appendChild($xmlElem);
-            }
-
-            $rootElem->appendChild($xmlUrl);
-        }
+        $rootElem = $this->initXmlOrderDocument();
+        $this->appendXmlInvoice($rootElem);
+        $this->appendXmlRecurrence($rootElem);
+        $this->appendXmlPaymentSplit($rootElem);
+        $this->appendPaymentInstrument($rootElem);
+        $this->appendXmlParams($rootElem);
+        $this->appendReturnUrl($rootElem);
 
         $this->xmlDoc->appendChild($rootElem);
 
         return $this;
+    }
+
+    /**
+     * @param DOMElement $rootElem
+     * @throws Exception
+     */
+    protected function appendXmlInvoice($rootElem)
+    {
+        $xmlElem = $this->invoice->createXmlElement($this->xmlDoc);
+        $rootElem->appendChild($xmlElem);
+    }
+
+
+    /**
+     * @param DOMElement $rootElem
+     * @throws Exception
+     */
+    protected function appendXmlRecurrence($rootElem)
+    {
+//        if ($this->recurrence instanceof Mobilpay_Payment_Recurrence) {
+//            $xmlElem = $this->recurrence->createXmlElement($this->xmlDoc);
+//            $rootElem->appendChild($xmlElem);
+//        }
+    }
+
+    /**
+     * @param DOMElement $rootElem
+     * @throws Exception
+     */
+    protected function appendXmlPaymentSplit($rootElem)
+    {
+        if ($this->split instanceof PaymentSplit) {
+            $xmlSplit = $this->xmlDoc->createElement('split');
+            $xmlElements = $this->split->createXmlElement($this->xmlDoc);
+            foreach ($xmlElements as $xmlElem) {
+                $xmlSplit->appendChild($xmlElem);
+            }
+            $rootElem->appendChild($xmlSplit);
+        }
+    }
+
+    /**
+     * @param DOMElement $rootElem
+     * @throws Exception
+     */
+    protected function appendPaymentInstrument($rootElem)
+    {
+//        if ($this->paymentInstrument instanceof Mobilpay_Payment_Instrument_Card) {
+//            $xmlElem = $this->_xmlDoc->createElement('payment_instrument');
+//            $xmlElem2 = $this->paymentInstrument->createXmlElement($this->_xmlDoc);
+//            $xmlElem->appendChild($xmlElem2);
+//            $rootElem->appendChild($xmlElem);
+//        }
     }
 }

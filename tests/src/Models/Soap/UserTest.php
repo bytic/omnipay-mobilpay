@@ -24,7 +24,7 @@ class UserTest extends AbstractTest
                 'first_name' => 'John',
                 'last_name' => 'Foe',
                 'contacts' => [
-                    'phone' => '123',
+                    'phone' => '0741000222',
                     'email' => 'test@galantom.ro',
                 ],
                 'type' => Person::TYPE_TEHNICAL,

@@ -6,6 +6,7 @@ use ByTIC\Omnipay\Common\Library\Signer;
 use ByTIC\Omnipay\Common\Message\Traits\RequestDataGetWithValidationTrait;
 use ByTIC\Omnipay\Mobilpay\Models\Address;
 use ByTIC\Omnipay\Mobilpay\Models\Invoice;
+use ByTIC\Omnipay\Mobilpay\Models\PaymentSplit;
 use ByTIC\Omnipay\Mobilpay\Models\Request\Card;
 
 /**
@@ -79,6 +80,7 @@ class PurchaseRequest extends AbstractRequest
         $card->returnUrl = ''.$this->getReturnUrl(); //Add spaces to add the item to the XML
         $card->confirmUrl = ''.$this->getNotifyUrl(); //Add spaces to add the item to the XML
         $card->invoice = $this->generateMobilpayPaymentInvoice();
+        $this->generateMobilpayPaymentSplit($card);
 
 //        $card->encrypt($this->getCertificate());
     }
@@ -110,6 +112,21 @@ class PurchaseRequest extends AbstractRequest
         $invoice->setShippingAddress($this->generateMobilpayPaymentShippingAddress());
 
         return $invoice;
+    }
+
+    /**
+     * @param Card $card
+     */
+    protected function generateMobilpayPaymentSplit($card)
+    {
+        $split = $this->getParameter('split');
+        if (is_array($split)) {
+            $card->split = new PaymentSplit();
+            $card->split->destinations = [
+                ['id' => 'destination_sac_id_1', 'amount' => 'amount_to_be_transferred_to_sac_id_1'],
+                ['id' => 'destination_sac_id_2', 'amount' => 'amount_to_be_transferred_to_sac_id_2'],
+            ];
+        }
     }
 
     /**

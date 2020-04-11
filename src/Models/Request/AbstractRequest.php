@@ -20,6 +20,8 @@ use stdClass;
  */
 abstract class AbstractRequest
 {
+    use Traits\HasXmlDocument;
+
     const PAYMENT_TYPE_SMS = 'sms';
     const PAYMENT_TYPE_CARD = 'card';
 
@@ -49,6 +51,7 @@ abstract class AbstractRequest
 
     const VERSION_QUERY_STRING = 0x01;
     const VERSION_XML = 0x02;
+
     #declare member variables
     /**
      * signatue (Mandatory)    - signature received from mobilpay.ro that identifies merchant account
@@ -56,6 +59,7 @@ abstract class AbstractRequest
      * @var string(64)
      */
     public $signature = null;
+
     /**
      * service - identifier of service/product for which you're requesting a payment
      * Mandatory for Mobilpay_Payment_Request_Sms
@@ -102,11 +106,6 @@ abstract class AbstractRequest
 
     public $params = [];
     public $objReqNotify = null;
-
-    /**
-     * @var null|DOMDocument
-     */
-    protected $xmlDoc = null;
 
     protected $requestIdentifier = null;
 

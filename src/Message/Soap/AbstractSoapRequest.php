@@ -143,8 +143,8 @@ abstract class AbstractSoapRequest extends OmnipayAbstractRequest
             return $soapClient->__soapCall($method, $data);
         } catch (SoapFault $soapFault) {
             return [
-                 "code" => $soapFault->getCode(),
-                 "message" => $soapFault->getMessage(),
+                "code" => $soapFault->faultcode,
+                "message" => $soapFault->getMessage(),
             ];
         }
     }

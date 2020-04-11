@@ -23,7 +23,7 @@ class LogInRequestTest extends AbstractTest
             'password' => 'testpassword',
         ];
         $mock = $this->applySoapClientMock();
-        $mock->shouldReceive('logIn')->once()->with($params);
+        $mock->shouldReceive('__soapCall')->once()->with('logIn', $params);
 
         $this->request->initialize($params);
         $response = $this->request->send($params);
@@ -31,7 +31,7 @@ class LogInRequestTest extends AbstractTest
         self::assertInstanceOf(SoapResponse::class, $response);
     }
 
-    protected function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
 

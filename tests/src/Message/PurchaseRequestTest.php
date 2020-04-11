@@ -79,8 +79,8 @@ class PurchaseRequestTest extends AbstractRequestTest
 
         //Validate first Response
         $body = $gatewayResponse->getBody(true);
-        self::assertContains('ID Tranzactie', $body);
-        self::assertContains('Descriere plata', $body);
-        self::assertContains('Site comerciant', $body);
+        self::assertStringContainsString('ID Tranzactie', $body);
+        self::assertStringContainsString('Descriere plata', $body);
+        self::assertStringContainsString('Site comerciant', $body);
     }
 }

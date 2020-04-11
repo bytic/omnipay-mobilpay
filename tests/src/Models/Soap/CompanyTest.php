@@ -21,7 +21,7 @@ class CompanyTest extends AbstractTest
             'name' => 'Test Company',
             'type' => 1,
             'code' => '999',
-            'reg_code' => '8888',
+            'reg_code' => 'J00/0000/1900',
             'vat' => true,
             'payment_methods' => [1],
             'address' => [
@@ -31,9 +31,9 @@ class CompanyTest extends AbstractTest
                 'postal_code' => '',
             ],
             'bank' => [
-                'name' => '',
-                'branch' => '',
-                'iban' => '',
+                'name' => 'ING BANK',
+                'branch' => 'ING Militari',
+                'iban' => 'RO99INGB0000000',
             ],
             'fax' => '11111',
             'seller_accounts' => [
