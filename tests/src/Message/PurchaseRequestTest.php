@@ -4,8 +4,10 @@ namespace ByTIC\Omnipay\Mobilpay\Tests\Message;
 
 use ByTIC\Omnipay\Mobilpay\Message\PurchaseRequest;
 use ByTIC\Omnipay\Mobilpay\Message\PurchaseResponse;
-use Omnipay\Common\Exception\InvalidRequestException;
+use ByTIC\Omnipay\Mobilpay\Models\PaymentSplit;
+use ByTIC\Omnipay\Mobilpay\Models\Request\Card;
 use Guzzle\Http\Client as HttpClient;
+use Omnipay\Common\Exception\InvalidRequestException;
 
 /**
  * Class PurchaseRequestTest
@@ -45,24 +47,7 @@ class PurchaseRequestTest extends AbstractRequestTest
 
     public function testSend()
     {
-        $data = [
-            'signature' => getenv('MOBILPAY_SIGNATURE'),
-            'certificate' => getenv('MOBILPAY_PUBLIC_CER'),
-            'privateKey' => getenv('MOBILPAY_PRIVATE_KEY'),
-
-            'amount' => 20.00,
-
-            'orderId' => 999,
-            'orderName' => 'Test order',
-            'orderDate' => '',
-
-            'endpointUrl' => 'https://secure.mobilpay.ro',
-            'card' => [
-                'firstName' => 'Test',
-                'lastName' => 'Test',
-                'email' => 'test@bytic.ro',
-            ]
-        ];
+        $data = require TEST_FIXTURE_PATH.'/requests/PurchaseRequest/baseRequest.php';
         $request = $this->newRequestWithInitTest(PurchaseRequest::class, $data);
 
         /** @var PurchaseResponse $response */
@@ -82,5 +67,28 @@ class PurchaseRequestTest extends AbstractRequestTest
         self::assertStringContainsString('ID Tranzactie', $body);
         self::assertStringContainsString('Descriere plata', $body);
         self::assertStringContainsString('Site comerciant', $body);
+    }
+
+    public function test_generateMobilpayPaymentSplit()
+    {
+        $data = require TEST_FIXTURE_PATH.'/requests/PurchaseRequest/baseRequest.php';
+        $data['split'] = [
+            123 => 12,
+            789 => 8,
+        ];
+
+        $request = $this->newRequestWithInitTest(PurchaseRequest::class, $data);
+
+        $card = $request->populateMobilpayCardRequest();
+        self::assertInstanceOf(Card::class, $card);
+
+        $split = $card->split;
+        self::assertInstanceOf(PaymentSplit::class, $split);
+
+        $destination = $split->destinations;
+        self::assertCount(2, $destination);
+
+        self::assertSame(['id' => 123, 'amount' => 12], $destination[0]);
+        self::assertSame(['id' => 789, 'amount' => 8], $destination[1]);
     }
 }

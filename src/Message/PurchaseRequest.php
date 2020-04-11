@@ -59,8 +59,7 @@ class PurchaseRequest extends AbstractRequest
     protected function populateData()
     {
         $data = [];
-        $this->populateMobilpayCardRequest();
-        $cardRequest = $this->getMobilpayCardRequest();
+        $cardRequest = $this->populateMobilpayCardRequest();
 
         $signer = new Signer();
         $signer->setCertificate($this->getCertificate());
@@ -73,7 +72,10 @@ class PurchaseRequest extends AbstractRequest
         return $data;
     }
 
-    protected function populateMobilpayCardRequest()
+    /**
+     * @return Card
+     */
+    public function populateMobilpayCardRequest()
     {
         $card = $this->getMobilpayCardRequest();
         $card->orderId = $this->getOrderId();
@@ -82,7 +84,7 @@ class PurchaseRequest extends AbstractRequest
         $card->invoice = $this->generateMobilpayPaymentInvoice();
         $this->generateMobilpayPaymentSplit($card);
 
-//        $card->encrypt($this->getCertificate());
+        return $card;
     }
 
     /**
@@ -100,11 +102,13 @@ class PurchaseRequest extends AbstractRequest
 
     /**
      * @return Invoice
+     * @noinspection PhpDocMissingThrowsInspection
      */
     protected function generateMobilpayPaymentInvoice()
     {
         $invoice = new Invoice();
         $invoice->currency = $this->getCurrency();
+        /** @noinspection PhpUnhandledExceptionInspection */
         $invoice->amount = $this->getAmount();
         $invoice->installments = '2,3';
         $invoice->details = $this->getDescription();
@@ -122,10 +126,12 @@ class PurchaseRequest extends AbstractRequest
         $split = $this->getParameter('split');
         if (is_array($split)) {
             $card->split = new PaymentSplit();
-            $card->split->destinations = [
-                ['id' => 'destination_sac_id_1', 'amount' => 'amount_to_be_transferred_to_sac_id_1'],
-                ['id' => 'destination_sac_id_2', 'amount' => 'amount_to_be_transferred_to_sac_id_2'],
-            ];
+            foreach ($split as $destination => $value) {
+                $card->split->destinations[] = [
+                    'id' => $destination,
+                    'amount' => $value,
+                ];
+            }
         }
     }
 
@@ -177,5 +183,22 @@ class PurchaseRequest extends AbstractRequest
         $address->iban = '';
 
         return $address;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSplit()
+    {
+        return $this->getParameter('split');
+    }
+
+    /**
+     * @param $value
+     * @return $this
+     */
+    public function setSplit($value)
+    {
+        return $this->setParameter('split', $value);
     }
 }
