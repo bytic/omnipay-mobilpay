@@ -3,6 +3,7 @@
 namespace ByTIC\Omnipay\Mobilpay\Message;
 
 use ByTIC\Omnipay\Common\Library\Signer;
+use ByTIC\Omnipay\Common\Message\Traits\HasLanguageRequestTrait;
 use ByTIC\Omnipay\Common\Message\Traits\RequestDataGetWithValidationTrait;
 use ByTIC\Omnipay\Mobilpay\Models\Address;
 use ByTIC\Omnipay\Mobilpay\Models\Invoice;
@@ -18,6 +19,7 @@ use ByTIC\Omnipay\Mobilpay\Models\Request\Card;
 class PurchaseRequest extends AbstractRequest
 {
     use RequestDataGetWithValidationTrait;
+    use HasLanguageRequestTrait;
 
     /**
      * @var Card
@@ -68,6 +70,7 @@ class PurchaseRequest extends AbstractRequest
         $data['env_key'] = base64_encode($sealedContent[1][0]);
         $data['data'] = base64_encode($sealedContent[0]);
         $data['redirectUrl'] = $this->getEndpointUrl();
+        $data['lang'] = $this->getLang();
 
         return $data;
     }

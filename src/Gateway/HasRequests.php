@@ -23,6 +23,7 @@ trait HasRequests
     public function purchase(array $parameters = []): RequestInterface
     {
         $parameters['endpointUrl'] = $this->getEndpointUrl();
+        $this->populateRequestLangParam($parameters);
 
         return $this->createRequest(
             PurchaseRequest::class,

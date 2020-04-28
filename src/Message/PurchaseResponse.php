@@ -10,7 +10,9 @@ use Omnipay\Common\Message\RedirectResponseInterface;
  */
 class PurchaseResponse extends AbstractResponse implements RedirectResponseInterface
 {
-    use RedirectHtmlTrait;
+    use RedirectHtmlTrait {
+        getRedirectUrl as getRedirectUrlTrait;
+    }
 
     /**
      * @return array
@@ -23,5 +25,19 @@ class PurchaseResponse extends AbstractResponse implements RedirectResponseInter
         ];
 
         return $data;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getRedirectUrl()
+    {
+        $url = $this->getRedirectUrlTrait();
+        $lang = $this->getDataProperty('lang', 'ro');
+        if ($lang == 'en') {
+            $url .= '/'.$lang;
+        }
+
+        return $url;
     }
 }

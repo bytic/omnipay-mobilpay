@@ -32,7 +32,6 @@
   "require": {
     "php": "^7.0",
     "ext-dom": "*",
-    "omnipay/common": "^2.3",
     "bytic/omnipay-common": "^1.0"
   },
   "suggest": {

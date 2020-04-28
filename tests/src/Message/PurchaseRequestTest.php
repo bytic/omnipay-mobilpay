@@ -48,6 +48,7 @@ class PurchaseRequestTest extends AbstractRequestTest
     public function testSend()
     {
         $data = require TEST_FIXTURE_PATH.'/requests/PurchaseRequest/baseRequest.php';
+        $data['lang'] = 'en';
         $request = $this->newRequestWithInitTest(PurchaseRequest::class, $data);
 
         /** @var PurchaseResponse $response */
@@ -60,13 +61,13 @@ class PurchaseRequestTest extends AbstractRequestTest
         $client = new HttpClient();
         $gatewayResponse = $client->post($response->getRedirectUrl(), null, $data)->send();
         self::assertSame(200, $gatewayResponse->getStatusCode());
-        self::assertStringEndsWith('mobilpay.ro', $gatewayResponse->getEffectiveUrl());
+        self::assertStringEndsWith('mobilpay.ro/en', $gatewayResponse->getEffectiveUrl());
 
         //Validate first Response
         $body = $gatewayResponse->getBody(true);
-        self::assertStringContainsString('ID Tranzactie', $body);
-        self::assertStringContainsString('Descriere plata', $body);
-        self::assertStringContainsString('Site comerciant', $body);
+        self::assertStringContainsString('Transaction ID', $body);
+        self::assertStringContainsString('Payment description', $body);
+        self::assertStringContainsString('Merchant website', $body);
     }
 
     public function test_generateMobilpayPaymentSplit()

@@ -2,6 +2,7 @@
 
 namespace ByTIC\Omnipay\Mobilpay;
 
+use ByTIC\Omnipay\Common\Gateway\Traits\HasLanguageTrait;
 use ByTIC\Omnipay\Mobilpay\Gateway\HasParameters;
 use ByTIC\Omnipay\Mobilpay\Gateway\HasRequests;
 use ByTIC\Omnipay\Mobilpay\Utils\Settings;
@@ -26,6 +27,7 @@ class Gateway extends AbstractGateway
 {
     use HasRequests;
     use HasParameters;
+    use HasLanguageTrait;
 
     /**
      * @inheritdoc
