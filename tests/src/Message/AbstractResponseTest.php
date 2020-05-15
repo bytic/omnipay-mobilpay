@@ -22,7 +22,7 @@ abstract class AbstractResponseTest extends AbstractTest
      */
     protected function newResponse($class, $data = [])
     {
-        $client = new HttpClient();
+        $client = $this->getHttpClient();
         $request = HttpRequest::createFromGlobals();
         /** @var AbstractRequest $request */
         $request = new $class($client, $request);

@@ -5,7 +5,7 @@ namespace ByTIC\Omnipay\Mobilpay\Tests\Traits;
 use Mockery as m;
 use ReflectionObject;
 use Guzzle\Common\Event;
-use Guzzle\Http\Client as HttpClient;
+use Omnipay\Common\Http\Client;
 use Guzzle\Http\Message\Response;
 use Guzzle\Http\Message\RequestInterface as GuzzleRequestInterface;
 use Guzzle\Plugin\Mock\MockPlugin;
@@ -19,7 +19,7 @@ trait HasTestUtilMethods
 {
     private $mockHttpRequests = [];
     private $mockRequest;
-    private $httpClient;
+    private $httpClientReal;
     private $httpRequest;
 
     /**
@@ -115,16 +115,17 @@ trait HasTestUtilMethods
         return $this->mockRequest;
     }
 
+
     /**
-     * @return HttpClient
+     * @return Client
      */
-    public function getHttpClient()
+    public function getHttpClientReal()
     {
-        if (null === $this->httpClient) {
-            $this->httpClient = new HttpClient;
+        if (null === $this->httpClientReal) {
+            $this->httpClientReal = new Client();
         }
 
-        return $this->httpClient;
+        return $this->httpClientReal;
     }
 
     /**

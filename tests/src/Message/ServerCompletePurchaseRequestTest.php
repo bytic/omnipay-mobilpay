@@ -19,7 +19,7 @@ class ServerCompletePurchaseRequestTest extends AbstractRequestTest
 {
     public function testDecodeXML()
     {
-        $client = new HttpClient();
+        $client = $this->getHttpClient();
         $httpRequest = HttpRequestBuilder::createServerCompletePurchase();
         $request = new ServerCompletePurchaseRequest($client, $httpRequest);
 
@@ -38,7 +38,7 @@ class ServerCompletePurchaseRequestTest extends AbstractRequestTest
 
     public function testParseXml()
     {
-        $client = new HttpClient();
+        $client = $this->getHttpClient();
         $httpRequest = HttpRequestBuilder::createServerCompletePurchase();
         $request = new ServerCompletePurchaseRequest($client, $httpRequest);
 
@@ -100,7 +100,7 @@ class ServerCompletePurchaseRequestTest extends AbstractRequestTest
 
     public function testSend()
     {
-        $client = new HttpClient();
+        $client = $this->getHttpClient();
         $httpRequest = HttpRequestBuilder::createServerCompletePurchase();
         $request = new ServerCompletePurchaseRequest($client, $httpRequest);
 

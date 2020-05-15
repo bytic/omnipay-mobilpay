@@ -3,7 +3,7 @@
 namespace ByTIC\Omnipay\Mobilpay\Tests;
 
 use ByTIC\Omnipay\Mobilpay\Tests\Traits\HasTestUtilMethods;
-use PHPUnit\Framework\TestCase;
+use Omnipay\Tests\TestCase;
 
 /**
  * Class AbstractTest

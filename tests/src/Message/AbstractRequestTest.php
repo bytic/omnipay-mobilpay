@@ -3,12 +3,17 @@
 namespace ByTIC\Omnipay\Mobilpay\Tests\Message;
 
 use ByTIC\Omnipay\Mobilpay\Message\AbstractRequest;
-use ByTIC\Omnipay\Mobilpay\Tests\AbstractTest;
-use Guzzle\Http\Client as HttpClient;
+use ByTIC\Omnipay\Mobilpay\Tests\Traits\HasTestUtilMethods;
+use Omnipay\Tests\TestCase;
 use Symfony\Component\HttpFoundation\Request as HttpRequest;
 
-abstract class AbstractRequestTest extends AbstractTest
+/**
+ * Class AbstractRequestTest
+ * @package ByTIC\Omnipay\Mobilpay\Tests\Message
+ */
+abstract class AbstractRequestTest extends TestCase
 {
+    use HasTestUtilMethods;
 
     /**
      * @param string $class
@@ -29,7 +34,7 @@ abstract class AbstractRequestTest extends AbstractTest
      */
     protected function newRequest($class)
     {
-        $client = new HttpClient();
+        $client = $this->getHttpClient();
         $request = HttpRequest::createFromGlobals();
         $request = new $class($client, $request);
         return $request;
