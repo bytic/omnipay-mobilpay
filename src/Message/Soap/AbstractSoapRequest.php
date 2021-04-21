@@ -30,7 +30,7 @@ abstract class AbstractSoapRequest extends OmnipayAbstractRequest
      */
     public function getEndpoint()
     {
-        return Settings::SOAP_LIVE;
+        return Settings::SOAP_MERCHANT_LIVE;
     }
 
     /**
@@ -88,6 +88,8 @@ abstract class AbstractSoapRequest extends OmnipayAbstractRequest
             $soap_options['cache_wsdl'] = WSDL_CACHE_BOTH;
         }
 
+        $soap_options['cache_wsdl'] = WSDL_CACHE_NONE;
+
         try {
             // create the soap client
             $this->soapClient = new \SoapClient($this->getEndpoint(), $soap_options);
@@ -140,8 +142,10 @@ abstract class AbstractSoapRequest extends OmnipayAbstractRequest
     protected function runSoapTransaction($soapClient, $method, $data = [])
     {
         try {
+            return $soapClient->$method($data);
             return $soapClient->__soapCall($method, $data);
         } catch (SoapFault $soapFault) {
+            var_dump($soapClient->__getFunctions());
             return [
                 "code" => $soapFault->faultcode,
                 "message" => $soapFault->getMessage(),

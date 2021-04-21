@@ -1,7 +1,8 @@
 <?php
 
-namespace ByTIC\Omnipay\Mobilpay\Message\Soap;
+namespace ByTIC\Omnipay\Mobilpay\Message\Soap\Merchant;
 
+use ByTIC\Omnipay\Mobilpay\Message\Soap\AbstractSoapRequest;
 use ByTIC\Omnipay\Mobilpay\Message\Soap\Traits\HasSessionId;
 
 /**

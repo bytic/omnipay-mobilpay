@@ -7,6 +7,7 @@ use ByTIC\Omnipay\Common\Message\Traits\HasLanguageRequestTrait;
 use ByTIC\Omnipay\Common\Message\Traits\RequestDataGetWithValidationTrait;
 use ByTIC\Omnipay\Mobilpay\Models\Address;
 use ByTIC\Omnipay\Mobilpay\Models\Invoice;
+use ByTIC\Omnipay\Mobilpay\Models\PaymentRecurrence;
 use ByTIC\Omnipay\Mobilpay\Models\PaymentSplit;
 use ByTIC\Omnipay\Mobilpay\Models\Request\Card;
 
@@ -85,6 +86,8 @@ class PurchaseRequest extends AbstractRequest
         $card->returnUrl = ''.$this->getReturnUrl(); //Add spaces to add the item to the XML
         $card->confirmUrl = ''.$this->getNotifyUrl(); //Add spaces to add the item to the XML
         $card->invoice = $this->generateMobilpayPaymentInvoice();
+
+        $this->generateMobilpayPaymentRecurrence($card);
         $this->generateMobilpayPaymentSplit($card);
 
         return $card;
@@ -124,7 +127,24 @@ class PurchaseRequest extends AbstractRequest
     /**
      * @param Card $card
      */
-    protected function generateMobilpayPaymentSplit($card)
+    protected function generateMobilpayPaymentRecurrence(Card $card)
+    {
+        $recurrence = $this->getParameter('recurrence');
+        if (is_array($recurrence)) {
+            $card->recurrence = new PaymentRecurrence();
+            if (isset($recurrence['interval'])) {
+                $card->recurrence->setIntervalDay($recurrence['interval']);
+            }
+            if (isset($recurrence['times'])) {
+                $card->recurrence->setPaymentsNo($recurrence['times']);
+            }
+        }
+    }
+
+    /**
+     * @param Card $card
+     */
+    protected function generateMobilpayPaymentSplit(Card $card)
     {
         $split = $this->getParameter('split');
         if (is_array($split)) {

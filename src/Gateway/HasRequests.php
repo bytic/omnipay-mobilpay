@@ -5,9 +5,10 @@ namespace ByTIC\Omnipay\Mobilpay\Gateway;
 use ByTIC\Omnipay\Mobilpay\Message\CompletePurchaseRequest;
 use ByTIC\Omnipay\Mobilpay\Message\PurchaseRequest;
 use ByTIC\Omnipay\Mobilpay\Message\ServerCompletePurchaseRequest;
-use ByTIC\Omnipay\Mobilpay\Message\Soap\LogInRequest;
-use ByTIC\Omnipay\Mobilpay\Message\Soap\RegisterCompanyRequest;
-use ByTIC\Omnipay\Mobilpay\Message\Soap\ValidateRequestRequest;
+use ByTIC\Omnipay\Mobilpay\Message\Soap\Merchant\LogInRequest;
+use ByTIC\Omnipay\Mobilpay\Message\Soap\Merchant\RegisterCompanyRequest;
+use ByTIC\Omnipay\Mobilpay\Message\Soap\Merchant\ValidateRequestRequest;
+use ByTIC\Omnipay\Mobilpay\Message\Soap\Payment\CancelRecurrenceRequest;
 use Omnipay\Common\Message\RequestInterface;
 
 /**
@@ -71,6 +72,17 @@ trait HasRequests
     {
         return $this->createRequest(
             RegisterCompanyRequest::class,
+            array_merge($this->getDefaultParameters(), $parameters)
+        );
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function cancelRecurrence(array $parameters = []): RequestInterface
+    {
+        return $this->createRequest(
+            CancelRecurrenceRequest::class,
             array_merge($this->getDefaultParameters(), $parameters)
         );
     }

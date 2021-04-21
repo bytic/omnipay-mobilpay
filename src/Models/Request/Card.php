@@ -3,6 +3,7 @@
 namespace ByTIC\Omnipay\Mobilpay\Models\Request;
 
 use ByTIC\Omnipay\Mobilpay\Models\Invoice;
+use ByTIC\Omnipay\Mobilpay\Models\PaymentRecurrence;
 use ByTIC\Omnipay\Mobilpay\Models\PaymentSplit;
 use DOMElement;
 use Exception;
@@ -35,7 +36,7 @@ class Card extends AbstractRequest
     /**
      *
      * recurrent informations object
-     * @var Mobilpay_Payment_Recurrence
+     * @var PaymentRecurrence
      */
     public $recurrence = null;
 
@@ -173,10 +174,10 @@ class Card extends AbstractRequest
      */
     protected function appendXmlRecurrence($rootElem)
     {
-//        if ($this->recurrence instanceof Mobilpay_Payment_Recurrence) {
-//            $xmlElem = $this->recurrence->createXmlElement($this->xmlDoc);
-//            $rootElem->appendChild($xmlElem);
-//        }
+        if ($this->recurrence instanceof PaymentRecurrence) {
+            $xmlElem = $this->recurrence->createXmlElement($this->xmlDoc);
+            $rootElem->appendChild($xmlElem);
+        }
     }
 
     /**
