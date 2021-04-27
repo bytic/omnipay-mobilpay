@@ -3,6 +3,8 @@
 namespace ByTIC\Omnipay\Mobilpay\Gateway;
 
 use ByTIC\Omnipay\Mobilpay\Utils\Settings;
+use ByTIC\Omnipay\Mobilpay\Utils\Traits\HasAuthTrait;
+use ByTIC\Omnipay\Mobilpay\Utils\Traits\HasSecurityParams;
 use Omnipay\Common\AbstractGateway;
 
 /**
@@ -11,6 +13,9 @@ use Omnipay\Common\AbstractGateway;
  */
 trait HasParameters
 {
+    use HasSecurityParams;
+    use HasAuthTrait;
+
     /**
      * @var string
      */
@@ -20,21 +25,6 @@ trait HasParameters
      * @var string
      */
     protected $endpointLive = Settings::ENDPOINT_LIVE;
-
-    /**
-     * @var string
-     */
-    protected $signature;
-
-    /**
-     * @var string|null Certificate Content
-     */
-    protected $certificate;
-
-    /**
-     * @var string|null PrivateKey Content
-     */
-    protected $privateKey;
 
 
     /** @noinspection PhpMissingParentCallCommonInspection
@@ -48,6 +38,8 @@ trait HasParameters
             'signature' => $this->getSignature(),
             'certificate' => $this->getCertificate(),
             'privateKey' => $this->getPrivateKey(),
+            'username' => $this->getUsername(),
+            'password' => $this->getPassword(),
             'card' => [
                 'first_name' => '',
             ], //Add in order to generate the Card Object
@@ -80,57 +72,4 @@ trait HasParameters
 
     // ------------ Getter'n'Setters ------------ //
 
-    /**
-     * @return mixed
-     */
-    public function getSignature()
-    {
-        return $this->signature;
-    }
-
-    /**
-     * @param mixed $signature
-     */
-    public function setSignature($signature)
-    {
-        $this->signature = $signature;
-    }
-
-    /**
-     * @return null|string
-     */
-    public function getCertificate()
-    {
-        return $this->certificate;
-    }
-
-    /**
-     * @param null|string $certificate
-     */
-    public function setCertificate($certificate)
-    {
-        if (file_exists($certificate)) {
-            $certificate = file_get_contents($certificate);
-        }
-        $this->certificate = $certificate;
-    }
-
-    /**
-     * @return string
-     */
-    public function getPrivateKey()
-    {
-        return $this->privateKey;
-    }
-
-    /**
-     * @param string $privateKey
-     */
-    public function setPrivateKey(string $privateKey)
-    {
-        if (file_exists($privateKey)) {
-            $privateKey = file_get_contents($privateKey);
-        }
-        $this->privateKey = $privateKey;
-    }
 }

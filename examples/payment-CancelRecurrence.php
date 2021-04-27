@@ -2,9 +2,7 @@
 
 use ByTIC\Omnipay\Mobilpay\Models\Soap\Person;
 
-require 'init.php';
-
-$gateway = new \ByTIC\Omnipay\Mobilpay\Gateway();
+$gateway = require '_init.php';
 
 $parameters = [
     'username' => getenv('MOBILPAY_EMAIL'),

@@ -3,6 +3,7 @@
 namespace ByTIC\Omnipay\Mobilpay\Message\Soap\Merchant;
 
 use ByTIC\Omnipay\Mobilpay\Message\Soap\AbstractSoapRequest;
+use ByTIC\Omnipay\Mobilpay\Utils\Traits\HasAuthTrait;
 
 /**
  * Class RegisterCompanyRequest
@@ -10,6 +11,7 @@ use ByTIC\Omnipay\Mobilpay\Message\Soap\AbstractSoapRequest;
  */
 class LogInRequest extends AbstractSoapRequest
 {
+    use HasAuthTrait;
 
     /**
      * @inheritDoc
@@ -31,39 +33,5 @@ class LogInRequest extends AbstractSoapRequest
             'username' => $this->getUsername(),
             'password' => $this->getPassword(),
         ];
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getUsername()
-    {
-        return $this->getParameter('username');
-    }
-
-    /**
-     * @param string $value
-     * @return \Omnipay\Common\Message\AbstractRequest
-     */
-    public function setUsername($value)
-    {
-        return $this->setParameter('username', $value);
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getPassword()
-    {
-        return $this->getParameter('password');
-    }
-
-    /**
-     * @param string $value
-     * @return \Omnipay\Common\Message\AbstractRequest
-     */
-    public function setPassword($value)
-    {
-        return $this->setParameter('password', $value);
     }
 }

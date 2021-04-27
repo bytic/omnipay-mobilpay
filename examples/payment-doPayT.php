@@ -1,29 +1,25 @@
 <?php
 
-use ByTIC\Omnipay\Mobilpay\Models\Soap\Person;
-
-require 'init.php';
-
-$gateway = new \ByTIC\Omnipay\Mobilpay\Gateway();
+$gateway = require '_init.php';
 
 $parameters = [
-    'username' => getenv('MOBILPAY_EMAIL'),
-    'password' => getenv('MOBILPAY_PASSWORD'),
-    'sandbox' => true,
+    'amount' => 20.30,
+    'description' => 'desc',
+    'currency' => 'RON',
+    'orderId' => time(),
+    'clientIp' => '127.0.0.1',
+    'lang' => 'en',
+    'token' => '____',
+    'returnUrl' => CURRENT_URL,
+    'notifyUrl' => 'http://localhost',
+    'card' => [
+        'firstName' => 'Gabriel',
+        'lastName' => 'Solomon',
+        'email' => 'solomongaby@yahoo.com',
+        'phone' => '0741040219',
+        'address1' => 'Test',
+    ],
 ];
-$request = $gateway->logIn($parameters);
-$response = $request->send();
-
-// PRINT SESSION ID
-$sessionId = $response->getData();
-var_dump($sessionId);
-
-$parameters = [
-    'sessionId' => $sessionId,
-    'sacId' => getenv('MOBILPAY_SIGNATURE'),
-    'orderId' => '999',
-];
-var_dump($parameters);
 
 $request = $gateway->doPayT($parameters);
 $response = $request->send();

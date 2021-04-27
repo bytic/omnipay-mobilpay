@@ -21,7 +21,8 @@ use Omnipay\Common\Message\RequestInterface;
  * @method RequestInterface createCard(array $options = [])
  * @method RequestInterface updateCard(array $options = [])
  * @method RequestInterface deleteCard(array $options = [])
-
+ * @method \Omnipay\Common\Message\NotificationInterface acceptNotification(array $options = array())
+ * @method \Omnipay\Common\Message\RequestInterface fetchTransaction(array $options = [])
  */
 class Gateway extends AbstractGateway
 {
@@ -36,4 +37,5 @@ class Gateway extends AbstractGateway
     {
         return 'Mobilpay';
     }
+
 }

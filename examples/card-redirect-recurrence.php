@@ -1,17 +1,6 @@
 <?php
 
-require 'init.php';
-
-$gateway = new \ByTIC\Omnipay\Mobilpay\Gateway();
-$gateway->initialize(
-    [
-        'signature' => getenv('MOBILPAY_SIGNATURE'),
-        'certificate' => getenv('MOBILPAY_PUBLIC_CER'),
-        'privateKey' => getenv('MOBILPAY_PRIVATE_KEY_SANDBOX'),
-//     'lang' => 'en',
-        'testMode' => false,
-    ]
-);
+$gateway = require '_init.php';
 
 $parameters = [
     'amount' => 3.00,

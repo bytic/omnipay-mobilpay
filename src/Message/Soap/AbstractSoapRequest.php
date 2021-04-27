@@ -142,7 +142,7 @@ abstract class AbstractSoapRequest extends OmnipayAbstractRequest
     protected function runSoapTransaction($soapClient, $method, $data = [])
     {
         try {
-//            return $soapClient->$method($data);
+            return $soapClient->$method($data);
             return $soapClient->__soapCall($method, $data);
         } catch (SoapFault $soapFault) {
             var_dump($soapClient->__getFunctions());

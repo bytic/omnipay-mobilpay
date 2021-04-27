@@ -23,7 +23,7 @@ class LogInRequestTest extends AbstractTest
             'password' => 'testpassword',
         ];
         $mock = $this->applySoapClientMock();
-        $mock->shouldReceive('__soapCall')->once()->with('logIn', $params);
+        $mock->shouldReceive('logIn')->once();
 
         $this->request->initialize($params);
         $response = $this->request->send($params);

@@ -2,7 +2,8 @@
 
 namespace ByTIC\Omnipay\Mobilpay\Message\Soap\Payment;
 
-use ByTIC\Omnipay\Mobilpay\Message\Soap\Traits\HasOrderId;
+
+use ByTIC\Omnipay\Mobilpay\Utils\Traits\HasOrderId;
 
 /**
  * Class CancelRecurrenceRequest
