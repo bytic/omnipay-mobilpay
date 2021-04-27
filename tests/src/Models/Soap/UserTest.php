@@ -14,7 +14,6 @@ use ByTIC\Omnipay\Mobilpay\Tests\AbstractTest;
  */
 class UserTest extends AbstractTest
 {
-
     public function test_fromArray()
     {
         $data = [

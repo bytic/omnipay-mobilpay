@@ -10,7 +10,6 @@ use ByTIC\Omnipay\Mobilpay\Message\Soap\Traits\HasOrderId;
  */
 class DoPayTRequest extends AbstractPaymentSoapRequest
 {
-
     protected function runTransaction($soapClient, $data)
     {
         return $this->runSoapTransaction($soapClient, 'doPayT', $data);

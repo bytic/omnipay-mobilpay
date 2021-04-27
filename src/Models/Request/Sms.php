@@ -47,8 +47,10 @@ class Sms extends AbstractRequest
         //SMS request specific data
         $elems = $elem->getElementsByTagName('service');
         if ($elems->length != 1) {
-            throw new Exception('Mobilpay_Payment_Request_Sms::loadFromXml failed: service is missing',
-                self::ERROR_LOAD_FROM_XML_SERVICE_ELEM_MISSING);
+            throw new Exception(
+                'Mobilpay_Payment_Request_Sms::loadFromXml failed: service is missing',
+                self::ERROR_LOAD_FROM_XML_SERVICE_ELEM_MISSING
+            );
         }
         $xmlElem = $elems->item(0);
         $this->service = $xmlElem->nodeValue;
