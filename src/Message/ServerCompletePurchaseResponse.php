@@ -3,6 +3,8 @@
 namespace ByTIC\Omnipay\Mobilpay\Message;
 
 use ByTIC\Omnipay\Common\Message\Traits\GatewayNotificationResponseTrait;
+use ByTIC\Omnipay\Common\Message\Traits\HasTokenTrait;
+use ByTIC\Omnipay\Common\Models\Token;
 use ByTIC\Omnipay\Mobilpay\Models\Request\Card;
 use ByTIC\Omnipay\Mobilpay\Models\Request\Notify;
 use DateTime;
@@ -14,6 +16,7 @@ use DateTime;
 class ServerCompletePurchaseResponse extends AbstractResponse
 {
     use GatewayNotificationResponseTrait;
+    use HasTokenTrait;
 
     /** @noinspection PhpMissingParentCallCommonInspection
      *
@@ -96,6 +99,16 @@ class ServerCompletePurchaseResponse extends AbstractResponse
     {
         header('Content-type: application/xml');
         echo $this->getContent();
+    }
+
+    public function getToken(): ?Token
+    {
+        return new Token(
+            [
+                'id' => $this->getMobilpayNotify()->token_id,
+                'expiration_date' => $this->getMobilpayNotify()->token_expiration_date,
+            ]
+        );
     }
 
     /**

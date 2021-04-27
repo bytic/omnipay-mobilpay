@@ -2,6 +2,7 @@
 
 namespace ByTIC\Omnipay\Mobilpay\Tests\Message;
 
+use ByTIC\Omnipay\Common\Models\Token;
 use ByTIC\Omnipay\Mobilpay\Message\ServerCompletePurchaseRequest;
 use ByTIC\Omnipay\Mobilpay\Message\ServerCompletePurchaseResponse;
 use ByTIC\Omnipay\Mobilpay\Models\Address;
@@ -9,7 +10,6 @@ use ByTIC\Omnipay\Mobilpay\Models\Invoice;
 use ByTIC\Omnipay\Mobilpay\Models\Request\Card;
 use ByTIC\Omnipay\Mobilpay\Models\Request\Notify;
 use ByTIC\Omnipay\Mobilpay\Tests\Fixtures\HttpRequestBuilder;
-use Guzzle\Http\Client as HttpClient;
 
 /**
  * Class ServerCompletePurchaseRequestTest
@@ -26,7 +26,7 @@ class ServerCompletePurchaseRequestTest extends AbstractRequestTest
         $data = [
             'signature' => getenv('MOBILPAY_SIGNATURE'),
             'certificate' => getenv('MOBILPAY_PUBLIC_CER'),
-            'privateKey' => getenv('MOBILPAY_PRIVATE_KEY'),
+            'privateKey' => getenv('MOBILPAY_PRIVATE_KEY_SANDBOX'),
         ];
         $request->initialize($data);
 
@@ -50,8 +50,8 @@ class ServerCompletePurchaseRequestTest extends AbstractRequestTest
 
         self::assertInstanceOf(Invoice::class, $cardRequest->invoice);
         self::assertSame('RON', $cardRequest->invoice->currency);
-        self::assertSame('150.00', $cardRequest->invoice->amount);
-        self::assertSame('Donatie pentru Alaturi de Madalin via Alina Cilil', $cardRequest->invoice->details);
+        self::assertSame('25.00', $cardRequest->invoice->amount);
+//        self::assertSame('Donatie pentru Alaturi de Madalin via Alina Cilil', $cardRequest->invoice->details);
 
         $this->validateAddressObject($cardRequest->invoice->getBillingAddress());
         $this->validateAddressObject($cardRequest->invoice->getShippingAddress());
@@ -65,7 +65,7 @@ class ServerCompletePurchaseRequestTest extends AbstractRequestTest
     protected function validateCardObject($cardRequest)
     {
         self::assertInstanceOf(Card::class, $cardRequest);
-        self::assertSame('39188', $cardRequest->orderId);
+        self::assertSame('1619511426', $cardRequest->orderId);
     }
 
     /**
@@ -74,8 +74,8 @@ class ServerCompletePurchaseRequestTest extends AbstractRequestTest
     protected function validateAddressObject($address)
     {
         self::assertInstanceOf(Address::class, $address);
-        self::assertSame('Alina', $address->firstName);
-        self::assertSame('S', $address->lastName);
+        self::assertSame('Gabriel', $address->firstName);
+        self::assertSame('Solomon', $address->lastName);
     }
 
     /**
@@ -84,18 +84,17 @@ class ServerCompletePurchaseRequestTest extends AbstractRequestTest
     protected function validateNotifyObject($notify)
     {
         self::assertInstanceOf(Notify::class, $notify);
-        self::assertSame('35410438', $notify->purchaseId);
+        self::assertSame('1219841', $notify->purchaseId);
         self::assertSame('confirmed', $notify->action);
         self::assertSame('0', $notify->errorCode);
-        self::assertSame('Tranzactia aprobata', $notify->errorMessage);
-        self::assertSame('20161023150844', $notify->timestamp);
-        self::assertSame('150.00', $notify->originalAmount);
-        self::assertSame('150.00', $notify->processedAmount);
+        self::assertSame('Transaction approved', $notify->errorMessage);
+        self::assertSame('20210427112031', $notify->timestamp);
+        self::assertSame('25.00', $notify->originalAmount);
+        self::assertSame('25.00', $notify->processedAmount);
         self::assertSame(null, $notify->promotionAmount);
         self::assertSame('1', $notify->current_payment_count);
-        self::assertSame('5****8655', $notify->pan_masked);
-        self::assertSame(null, $notify->token_id);
-        self::assertSame('1e59360874ae14eb39c7a038b205bf0d', $notify->getCrc());
+        self::assertSame('9****5098', $notify->pan_masked);
+        self::assertSame('47b6a77de9854bba047b5d2889f9d13b', $notify->getCrc());
     }
 
     public function testSend()
@@ -107,7 +106,7 @@ class ServerCompletePurchaseRequestTest extends AbstractRequestTest
         $data = [
             'signature' => getenv('MOBILPAY_SIGNATURE'),
             'certificate' => getenv('MOBILPAY_PUBLIC_CER'),
-            'privateKey' => getenv('MOBILPAY_PRIVATE_KEY'),
+            'privateKey' => getenv('MOBILPAY_PRIVATE_KEY_SANDBOX'),
         ];
         $request->initialize($data);
         $response = $request->send();
@@ -118,11 +117,19 @@ class ServerCompletePurchaseRequestTest extends AbstractRequestTest
         $this->validateCardObject($data['cardRequest']);
         $this->validateNotifyObject($data['notification']);
 
+        $token = $response->getToken();
+        self::assertInstanceOf(Token::class, $token);
+        self::assertSame(
+            'MTI2NzgxOvU9tf//XCNC0taaYWK6W0Cj1a+5DhmSx6yIr+DImuz33wtQ+5q8d33qPngNshlSU6qAaZq4/9zbUM3uAPijRuA=',
+            $token->getId()
+        );
+        self::assertSame('2022-01-01 00:00:00', $token->getExpirationDate()->format('Y-m-d H:i:s'));
+
         self::assertTrue($response->isSuccessful());
         self::assertFalse($response->isCancelled());
         self::assertFalse($response->isPending());
         self::assertSame(
-            '<?xml version="1.0" encoding="utf-8"?>'."\n".'<crc>1e59360874ae14eb39c7a038b205bf0d</crc>',
+            '<?xml version="1.0" encoding="utf-8"?>'."\n".'<crc>47b6a77de9854bba047b5d2889f9d13b</crc>',
             $response->getContent()
         );
     }

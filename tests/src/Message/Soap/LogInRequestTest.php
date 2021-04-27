@@ -2,7 +2,7 @@
 
 namespace ByTIC\Omnipay\Mobilpay\Tests\Message\Soap;
 
-use ByTIC\Omnipay\Mobilpay\Message\Soap\LogInRequest;
+use ByTIC\Omnipay\Mobilpay\Message\Soap\Merchant\LogInRequest;
 use ByTIC\Omnipay\Mobilpay\Message\Soap\SoapResponse;
 use ByTIC\Omnipay\Mobilpay\Tests\AbstractTest;
 use SoapClient;

@@ -37,8 +37,10 @@ class HttpRequestBuilder
      */
     public static function getFileContents($file)
     {
-        $content = file_get_contents(TEST_FIXTURE_PATH.'/requests/'.$file.'.serialized');
-        $content = unserialize($content);
+        $content = file_get_contents(TEST_FIXTURE_PATH.'/requests/'.$file.'.json');
+        $content = json_decode($content, true);
+
+        $content = array_map('urldecode', $content);
 
         return $content;
     }
