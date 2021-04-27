@@ -9,6 +9,7 @@ use ByTIC\Omnipay\Mobilpay\Message\Soap\Merchant\LogInRequest;
 use ByTIC\Omnipay\Mobilpay\Message\Soap\Merchant\RegisterCompanyRequest;
 use ByTIC\Omnipay\Mobilpay\Message\Soap\Merchant\ValidateRequestRequest;
 use ByTIC\Omnipay\Mobilpay\Message\Soap\Payment\CancelRecurrenceRequest;
+use ByTIC\Omnipay\Mobilpay\Message\Soap\Payment\DoPayTRequest;
 use Omnipay\Common\Message\RequestInterface;
 
 /**
@@ -72,6 +73,17 @@ trait HasRequests
     {
         return $this->createRequest(
             RegisterCompanyRequest::class,
+            array_merge($this->getDefaultParameters(), $parameters)
+        );
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function doPayT(array $parameters = []): RequestInterface
+    {
+        return $this->createRequest(
+            DoPayTRequest::class,
             array_merge($this->getDefaultParameters(), $parameters)
         );
     }

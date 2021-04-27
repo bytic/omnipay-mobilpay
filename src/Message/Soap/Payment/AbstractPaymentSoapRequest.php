@@ -22,6 +22,8 @@ abstract class AbstractPaymentSoapRequest extends AbstractSoapRequest
      */
     public function getEndpoint(): string
     {
-        return Settings::SOAP_PAYMENT_LIVE;
+        return $this->getTestMode() === false
+            ? Settings::SOAP_PAYMENT_LIVE
+            : Settings::SOAP_PAYMENT_SANDBOX;
     }
 }

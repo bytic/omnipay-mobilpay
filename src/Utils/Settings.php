@@ -12,5 +12,8 @@ class Settings
     const ENDPOINT_LIVE = 'https://secure.mobilpay.ro';
 
     const SOAP_MERCHANT_LIVE = 'http://www.mobilpay.ro/api/merchant?wsdl';
-    const SOAP_PAYMENT_LIVE = 'http://www.mobilpay.ro/api/payment?wsdl';
+    const SOAP_MERCHANT_SANDBOX = 'http://sandboxsecure.mobilpay.ro/api/merchant?wsdl';
+
+    const SOAP_PAYMENT_LIVE = 'https://secure.mobilpay.ro/api/payment/?wsdl';
+    const SOAP_PAYMENT_SANDBOX = 'http://sandboxsecure.mobilpay.ro/api/payment/?wsdl';
 }
