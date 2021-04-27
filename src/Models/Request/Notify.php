@@ -60,8 +60,10 @@ class Notify
 
         $attr = $elem->attributes->getNamedItem('crc');
         if ($attr == null) {
-            throw new Exception('Mobilpay_Payment_Request_Notify::loadFromXml failed; mandatory crc attribute missing',
-                self::ERROR_LOAD_FROM_XML_CRC_ATTR_MISSING);
+            throw new Exception(
+                'Mobilpay_Payment_Request_Notify::loadFromXml failed; mandatory crc attribute missing',
+                self::ERROR_LOAD_FROM_XML_CRC_ATTR_MISSING
+            );
         }
         $this->_crc = $attr->nodeValue;
 

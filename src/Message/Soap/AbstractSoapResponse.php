@@ -10,5 +10,4 @@ use Omnipay\Common\Message\AbstractResponse;
  */
 abstract class AbstractSoapResponse extends AbstractResponse
 {
-
 }
