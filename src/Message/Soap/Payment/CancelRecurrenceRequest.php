@@ -2,7 +2,6 @@
 
 namespace ByTIC\Omnipay\Mobilpay\Message\Soap\Payment;
 
-
 use ByTIC\Omnipay\Mobilpay\Utils\Traits\HasOrderId;
 
 /**

@@ -71,5 +71,4 @@ trait HasParameters
     }
 
     // ------------ Getter'n'Setters ------------ //
-
 }
