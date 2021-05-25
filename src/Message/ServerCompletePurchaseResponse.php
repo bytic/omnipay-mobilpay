@@ -169,4 +169,12 @@ class ServerCompletePurchaseResponse extends AbstractResponse
     {
         return $this->getMobilpayNotify()->purchaseId;
     }
+
+    /**
+     * @return string
+     */
+    public function getCardMasked()
+    {
+        return $this->getMobilpayNotify()->pan_masked;
+    }
 }
