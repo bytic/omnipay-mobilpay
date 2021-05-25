@@ -37,5 +37,4 @@ class Gateway extends AbstractGateway
     {
         return 'Mobilpay';
     }
-
 }
