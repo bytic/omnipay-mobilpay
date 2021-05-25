@@ -44,6 +44,4 @@ class DoPayTResponse extends SoapResponse
         }
         return parent::getTransactionReference();
     }
-
-
 }
