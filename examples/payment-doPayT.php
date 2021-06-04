@@ -21,7 +21,7 @@ $parameters = [
     ],
 ];
 
-$request = $gateway->doPayT($parameters);
+$request = $gateway->purchaseWithToken($parameters);
 $response = $request->send();
 
 var_dump($response->getData());

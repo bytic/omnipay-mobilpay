@@ -36,6 +36,14 @@ trait HasRequests
     /**
      * @inheritdoc
      */
+    public function purchaseWithToken(array $parameters = []): RequestInterface
+    {
+        return $this->doPayT($parameters);
+    }
+
+    /**
+     * @inheritdoc
+     */
     public function completePurchase(array $parameters = []): RequestInterface
     {
         return $this->createRequest(

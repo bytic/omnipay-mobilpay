@@ -14,6 +14,7 @@ if (file_exists(__DIR__.DIRECTORY_SEPARATOR.'.env')) {
 foreach (['MOBILPAY_PUBLIC_CER', 'MOBILPAY_PRIVATE_KEY','MOBILPAY_PRIVATE_KEY_SANDBOX'] as $key) {
     $value = getenv($key);
     if ($value) {
-        putenv($key.'='.gzinflate(base64_decode($value)));
+        $value = gzinflate(base64_decode($value));
+        putenv($key.'='.$value);
     }
 }
