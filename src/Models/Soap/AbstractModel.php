@@ -1,13 +1,13 @@
 <?php
 
-namespace ByTIC\Omnipay\Mobilpay\Models\Soap;
+namespace Paytic\Omnipay\Mobilpay\Models\Soap;
 
 use Omnipay\Common\Helper;
 use stdClass;
 
 /**
  * Class AbstractModel
- * @package ByTIC\Omnipay\Mobilpay\Models\Soap
+ * @package Paytic\Omnipay\Mobilpay\Models\Soap
  */
 abstract class AbstractModel
 {

@@ -1,12 +1,12 @@
 <?php
 
-namespace ByTIC\Omnipay\Mobilpay\Models\Request\Traits;
+namespace Paytic\Omnipay\Mobilpay\Models\Request\Traits;
 
 use DOMDocument;
 
 /**
  * Trait HasXmlDocument
- * @package ByTIC\Omnipay\Mobilpay\Models\Request
+ * @package Paytic\Omnipay\Mobilpay\Models\Request
  */
 trait HasXmlDocument
 {

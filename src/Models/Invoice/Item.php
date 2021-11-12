@@ -1,6 +1,6 @@
 <?php
 
-namespace ByTIC\Omnipay\Mobilpay\Models\Invoice;
+namespace Paytic\Omnipay\Mobilpay\Models\Invoice;
 
 use DOMDocument;
 use DOMNode;

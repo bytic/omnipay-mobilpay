@@ -1,10 +1,10 @@
 <?php
 
-namespace ByTIC\Omnipay\Mobilpay\Message\Soap;
+namespace Paytic\Omnipay\Mobilpay\Message\Soap;
 
 /**
  * Class SoapResponse
- * @package ByTIC\Omnipay\Mobilpay\Message\Soap
+ * @package Paytic\Omnipay\Mobilpay\Message\Soap
  */
 class SoapResponse extends AbstractSoapResponse
 {

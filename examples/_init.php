@@ -7,7 +7,7 @@ require dirname(__DIR__).DIRECTORY_SEPARATOR.'tests'.DIRECTORY_SEPARATOR.'bootst
 
 $request = HttpRequest::createFromGlobals();
 
-$gateway = new \ByTIC\Omnipay\Mobilpay\Gateway(null, $request);
+$gateway = new \Paytic\Omnipay\Mobilpay\Gateway(null, $request);
 
 $gateway->initialize(
     [

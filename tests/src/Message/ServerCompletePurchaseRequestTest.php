@@ -1,19 +1,19 @@
 <?php
 
-namespace ByTIC\Omnipay\Mobilpay\Tests\Message;
+namespace Paytic\Omnipay\Mobilpay\Tests\Message;
 
 use ByTIC\Omnipay\Common\Models\Token;
-use ByTIC\Omnipay\Mobilpay\Message\ServerCompletePurchaseRequest;
-use ByTIC\Omnipay\Mobilpay\Message\ServerCompletePurchaseResponse;
-use ByTIC\Omnipay\Mobilpay\Models\Address;
-use ByTIC\Omnipay\Mobilpay\Models\Invoice;
-use ByTIC\Omnipay\Mobilpay\Models\Request\Card;
-use ByTIC\Omnipay\Mobilpay\Models\Request\Notify;
-use ByTIC\Omnipay\Mobilpay\Tests\Fixtures\HttpRequestBuilder;
+use Paytic\Omnipay\Mobilpay\Message\ServerCompletePurchaseRequest;
+use Paytic\Omnipay\Mobilpay\Message\ServerCompletePurchaseResponse;
+use Paytic\Omnipay\Mobilpay\Models\Address;
+use Paytic\Omnipay\Mobilpay\Models\Invoice;
+use Paytic\Omnipay\Mobilpay\Models\Request\Card;
+use Paytic\Omnipay\Mobilpay\Models\Request\Notify;
+use Paytic\Omnipay\Mobilpay\Tests\Fixtures\HttpRequestBuilder;
 
 /**
  * Class ServerCompletePurchaseRequestTest
- * @package ByTIC\Omnipay\Mobilpay\Tests\Message
+ * @package Paytic\Omnipay\Mobilpay\Tests\Message
  */
 class ServerCompletePurchaseRequestTest extends AbstractRequestTest
 {

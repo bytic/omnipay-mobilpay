@@ -1,15 +1,15 @@
 <?php
 
-namespace ByTIC\Omnipay\Mobilpay\Message;
+namespace Paytic\Omnipay\Mobilpay\Message;
 
 use ByTIC\Omnipay\Common\Message\Traits\SendDataRequestTrait;
-use ByTIC\Omnipay\Mobilpay\Utils\Traits\HasOrderId;
-use ByTIC\Omnipay\Mobilpay\Utils\Traits\HasSecurityParams;
+use Paytic\Omnipay\Mobilpay\Utils\Traits\HasOrderId;
+use Paytic\Omnipay\Mobilpay\Utils\Traits\HasSecurityParams;
 use Omnipay\Common\Message\AbstractRequest as OmnipayAbstractRequest;
 
 /**
  * Class AbstractRequest
- * @package ByTIC\Omnipay\Mobilpay\Message
+ * @package Paytic\Omnipay\Mobilpay\Message
  */
 abstract class AbstractRequest extends OmnipayAbstractRequest
 {

@@ -1,16 +1,16 @@
 <?php
 
-namespace ByTIC\Omnipay\Mobilpay\Message\Soap\Payment;
+namespace Paytic\Omnipay\Mobilpay\Message\Soap\Payment;
 
-use ByTIC\Omnipay\Mobilpay\Message\Soap\SoapResponse;
-use ByTIC\Omnipay\Mobilpay\Utils\Traits\HasAuthTrait;
-use ByTIC\Omnipay\Mobilpay\Utils\Traits\HasOrderId;
-use ByTIC\Omnipay\Mobilpay\Utils\Traits\HasSecurityParams;
+use Paytic\Omnipay\Mobilpay\Message\Soap\SoapResponse;
+use Paytic\Omnipay\Mobilpay\Utils\Traits\HasAuthTrait;
+use Paytic\Omnipay\Mobilpay\Utils\Traits\HasOrderId;
+use Paytic\Omnipay\Mobilpay\Utils\Traits\HasSecurityParams;
 use stdClass;
 
 /**
  * Class DoPayTRequest
- * @package ByTIC\Omnipay\Mobilpay\Message\Soap\Payment
+ * @package Paytic\Omnipay\Mobilpay\Message\Soap\Payment
  */
 class DoPayTRequest extends AbstractPaymentSoapRequest
 {

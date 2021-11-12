@@ -1,8 +1,8 @@
 <?php
 
-namespace ByTIC\Omnipay\Mobilpay\Tests;
+namespace Paytic\Omnipay\Mobilpay\Tests;
 
-use ByTIC\Omnipay\Mobilpay\Tests\Traits\HasTestUtilMethods;
+use Paytic\Omnipay\Mobilpay\Tests\Traits\HasTestUtilMethods;
 use Omnipay\Tests\TestCase;
 
 /**

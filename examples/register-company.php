@@ -1,6 +1,6 @@
 <?php
 
-use ByTIC\Omnipay\Mobilpay\Models\Soap\Person;
+use Paytic\Omnipay\Mobilpay\Models\Soap\Person;
 
 $gateway = require '_init.php';
 
@@ -15,7 +15,7 @@ $response = $request->send();
 $sessionId = $response->getData();
 var_dump($sessionId);
 
-$user = \ByTIC\Omnipay\Mobilpay\Models\Soap\User::fromArray([
+$user = \Paytic\Omnipay\Mobilpay\Models\Soap\User::fromArray([
     'username' => 'test',
     'password' => 'test-pass#123',
     'person' => [
@@ -29,7 +29,7 @@ $user = \ByTIC\Omnipay\Mobilpay\Models\Soap\User::fromArray([
     ],
 ]);
 
-$company = \ByTIC\Omnipay\Mobilpay\Models\Soap\Company::fromArray([
+$company = \Paytic\Omnipay\Mobilpay\Models\Soap\Company::fromArray([
     'name' => 'Test Company',
     'type' => 1,
     'code' => '999',

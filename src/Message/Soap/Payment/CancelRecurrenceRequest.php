@@ -1,12 +1,12 @@
 <?php
 
-namespace ByTIC\Omnipay\Mobilpay\Message\Soap\Payment;
+namespace Paytic\Omnipay\Mobilpay\Message\Soap\Payment;
 
-use ByTIC\Omnipay\Mobilpay\Utils\Traits\HasOrderId;
+use Paytic\Omnipay\Mobilpay\Utils\Traits\HasOrderId;
 
 /**
  * Class CancelRecurrenceRequest
- * @package ByTIC\Omnipay\Mobilpay\Message\Soap\Payment
+ * @package Paytic\Omnipay\Mobilpay\Message\Soap\Payment
  */
 class CancelRecurrenceRequest extends AbstractPaymentSoapRequest
 {

@@ -1,8 +1,8 @@
 <?php
 
-namespace ByTIC\Omnipay\Mobilpay\Models;
+namespace Paytic\Omnipay\Mobilpay\Models;
 
-use ByTIC\Omnipay\Mobilpay\Models\Request\Notify;
+use Paytic\Omnipay\Mobilpay\Models\Request\Notify;
 
 /**
  * Class Request

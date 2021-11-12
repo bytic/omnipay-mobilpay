@@ -1,10 +1,10 @@
 <?php
 
-namespace ByTIC\Omnipay\Mobilpay\Utils;
+namespace Paytic\Omnipay\Mobilpay\Utils;
 
 /**
  * Class PaymentCodes
- * @package ByTIC\Omnipay\Mobilpay\Utils
+ * @package Paytic\Omnipay\Mobilpay\Utils
  */
 class PaymentCodes
 {

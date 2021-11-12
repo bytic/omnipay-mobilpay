@@ -1,15 +1,15 @@
 <?php
 
-namespace ByTIC\Omnipay\Mobilpay\Gateway;
+namespace Paytic\Omnipay\Mobilpay\Gateway;
 
-use ByTIC\Omnipay\Mobilpay\Utils\Settings;
-use ByTIC\Omnipay\Mobilpay\Utils\Traits\HasAuthTrait;
-use ByTIC\Omnipay\Mobilpay\Utils\Traits\HasSecurityParams;
+use Paytic\Omnipay\Mobilpay\Utils\Settings;
+use Paytic\Omnipay\Mobilpay\Utils\Traits\HasAuthTrait;
+use Paytic\Omnipay\Mobilpay\Utils\Traits\HasSecurityParams;
 use Omnipay\Common\AbstractGateway;
 
 /**
  * Trait HasParameters
- * @package ByTIC\Omnipay\Mobilpay\Gateway
+ * @package Paytic\Omnipay\Mobilpay\Gateway
  */
 trait HasParameters
 {

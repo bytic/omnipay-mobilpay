@@ -1,5 +1,5 @@
 {
-  "name": "bytic/omnipay-mobilpay",
+  "name": "paytic/omnipay-mobilpay",
   "type": "library",
   "license": "MIT",
   "description": "Mobilpay driver for ThePhpLeague Omnipay multi-payment processing library",
@@ -11,7 +11,7 @@
     "pay",
     "payment"
   ],
-  "homepage": "https://github.com/ByTIC/omnipay-mobilpay",
+  "homepage": "https://github.com/paytic/omnipay-mobilpay",
   "authors": [
     {
       "name": "Gabriel Solomon",
@@ -20,13 +20,13 @@
   ],
   "autoload": {
     "psr-4": {
-      "ByTIC\\Omnipay\\Mobilpay\\": "src/"
+      "Paytic\\Omnipay\\Mobilpay\\": "src/"
     }
   },
   "autoload-dev": {
     "psr-4": {
-      "ByTIC\\Omnipay\\Mobilpay\\Tests\\": "tests/src",
-      "ByTIC\\Omnipay\\Mobilpay\\Tests\\Fixtures\\": "tests/fixtures"
+      "Paytic\\Omnipay\\Mobilpay\\Tests\\": "tests/src",
+      "Paytic\\Omnipay\\Mobilpay\\Tests\\Fixtures\\": "tests/fixtures"
     }
   },
   "require": {

@@ -1,10 +1,10 @@
 <?php
 
-namespace ByTIC\Omnipay\Mobilpay\Utils\Traits;
+namespace Paytic\Omnipay\Mobilpay\Utils\Traits;
 
 /**
  * Trait HasOrderId
- * @package ByTIC\Omnipay\Mobilpay\Utils\Traits
+ * @package Paytic\Omnipay\Mobilpay\Utils\Traits
  */
 trait HasOrderId
 {

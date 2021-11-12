@@ -1,11 +1,11 @@
 <?php
 
-namespace ByTIC\Omnipay\Mobilpay;
+namespace Paytic\Omnipay\Mobilpay;
 
 use ByTIC\Omnipay\Common\Gateway\Traits\HasLanguageTrait;
-use ByTIC\Omnipay\Mobilpay\Gateway\HasParameters;
-use ByTIC\Omnipay\Mobilpay\Gateway\HasRequests;
-use ByTIC\Omnipay\Mobilpay\Utils\Settings;
+use Paytic\Omnipay\Mobilpay\Gateway\HasParameters;
+use Paytic\Omnipay\Mobilpay\Gateway\HasRequests;
+use Paytic\Omnipay\Mobilpay\Utils\Settings;
 use Omnipay\Common\AbstractGateway;
 use Omnipay\Common\Message\RequestInterface;
 

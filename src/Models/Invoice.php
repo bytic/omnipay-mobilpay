@@ -1,8 +1,8 @@
 <?php
 
-namespace ByTIC\Omnipay\Mobilpay\Models;
+namespace Paytic\Omnipay\Mobilpay\Models;
 
-use ByTIC\Omnipay\Mobilpay\Models\Invoice\Item as InvoiceItem;
+use Paytic\Omnipay\Mobilpay\Models\Invoice\Item as InvoiceItem;
 use DOMDocument;
 use DOMNode;
 use Exception;

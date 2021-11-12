@@ -1,17 +1,17 @@
 <?php
 
-namespace ByTIC\Omnipay\Mobilpay\Tests\Models\Soap;
+namespace Paytic\Omnipay\Mobilpay\Tests\Models\Soap;
 
-use ByTIC\Omnipay\Mobilpay\Models\Soap\Address;
-use ByTIC\Omnipay\Mobilpay\Models\Soap\Bank;
-use ByTIC\Omnipay\Mobilpay\Models\Soap\Company;
-use ByTIC\Omnipay\Mobilpay\Models\Soap\SellerAccount;
-use ByTIC\Omnipay\Mobilpay\Models\Soap\SellerAccountList;
-use ByTIC\Omnipay\Mobilpay\Tests\AbstractTest;
+use Paytic\Omnipay\Mobilpay\Models\Soap\Address;
+use Paytic\Omnipay\Mobilpay\Models\Soap\Bank;
+use Paytic\Omnipay\Mobilpay\Models\Soap\Company;
+use Paytic\Omnipay\Mobilpay\Models\Soap\SellerAccount;
+use Paytic\Omnipay\Mobilpay\Models\Soap\SellerAccountList;
+use Paytic\Omnipay\Mobilpay\Tests\AbstractTest;
 
 /**
  * Class CompanyTest
- * @package ByTIC\Omnipay\Mobilpay\Tests\Models\Soap
+ * @package Paytic\Omnipay\Mobilpay\Tests\Models\Soap
  */
 class CompanyTest extends AbstractTest
 {

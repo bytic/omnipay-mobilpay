@@ -1,14 +1,14 @@
 <?php
 
-namespace ByTIC\Omnipay\Mobilpay\Tests\Message;
+namespace Paytic\Omnipay\Mobilpay\Tests\Message;
 
-use ByTIC\Omnipay\Mobilpay\Message\CompletePurchaseRequest;
-use ByTIC\Omnipay\Mobilpay\Message\CompletePurchaseResponse;
-use ByTIC\Omnipay\Mobilpay\Tests\Fixtures\HttpRequestBuilder;
+use Paytic\Omnipay\Mobilpay\Message\CompletePurchaseRequest;
+use Paytic\Omnipay\Mobilpay\Message\CompletePurchaseResponse;
+use Paytic\Omnipay\Mobilpay\Tests\Fixtures\HttpRequestBuilder;
 
 /**
  * Class CompletePurchaseRequestTest
- * @package ByTIC\Omnipay\Mobilpay\Tests\Message
+ * @package Paytic\Omnipay\Mobilpay\Tests\Message
  */
 class CompletePurchaseRequestTest extends AbstractRequestTest
 {

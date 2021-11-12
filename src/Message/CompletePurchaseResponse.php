@@ -1,6 +1,6 @@
 <?php
 
-namespace ByTIC\Omnipay\Mobilpay\Message;
+namespace Paytic\Omnipay\Mobilpay\Message;
 
 use ByTIC\Omnipay\Common\Message\Traits\HtmlResponses\ConfirmHtmlTrait;
 

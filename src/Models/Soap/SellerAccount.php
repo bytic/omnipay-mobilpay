@@ -1,12 +1,12 @@
 <?php
 
-namespace ByTIC\Omnipay\Mobilpay\Models\Soap;
+namespace Paytic\Omnipay\Mobilpay\Models\Soap;
 
-use ByTIC\Omnipay\Mobilpay\Models\Soap\Traits\HasPaymentMethods;
+use Paytic\Omnipay\Mobilpay\Models\Soap\Traits\HasPaymentMethods;
 
 /**
  * Class SellerAccount
- * @package ByTIC\Omnipay\Mobilpay\Models\Soap
+ * @package Paytic\Omnipay\Mobilpay\Models\Soap
  */
 class SellerAccount extends AbstractModel
 {

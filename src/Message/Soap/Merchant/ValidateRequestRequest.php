@@ -1,13 +1,13 @@
 <?php
 
-namespace ByTIC\Omnipay\Mobilpay\Message\Soap\Merchant;
+namespace Paytic\Omnipay\Mobilpay\Message\Soap\Merchant;
 
-use ByTIC\Omnipay\Mobilpay\Message\Soap\AbstractSoapRequest;
-use ByTIC\Omnipay\Mobilpay\Message\Soap\Traits\HasSessionId;
+use Paytic\Omnipay\Mobilpay\Message\Soap\AbstractSoapRequest;
+use Paytic\Omnipay\Mobilpay\Message\Soap\Traits\HasSessionId;
 
 /**
  * Class ValidateRequestRequest
- * @package ByTIC\Omnipay\Mobilpay\Message\Soap
+ * @package Paytic\Omnipay\Mobilpay\Message\Soap
  */
 class ValidateRequestRequest extends AbstractSoapRequest
 {

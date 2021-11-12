@@ -1,15 +1,15 @@
 <?php /** @noinspection PhpComposerExtensionStubsInspection */
 
-namespace ByTIC\Omnipay\Mobilpay\Message\Soap;
+namespace Paytic\Omnipay\Mobilpay\Message\Soap;
 
-use ByTIC\Omnipay\Mobilpay\Utils\Settings;
+use Paytic\Omnipay\Mobilpay\Utils\Settings;
 use Omnipay\Common\Message\AbstractRequest as OmnipayAbstractRequest;
 use SoapClient;
 use SoapFault;
 
 /**
  * Class SoapAbstractRequest
- * @package ByTIC\Omnipay\Mobilpay\Message\Soap
+ * @package Paytic\Omnipay\Mobilpay\Message\Soap
  */
 abstract class AbstractSoapRequest extends OmnipayAbstractRequest
 {

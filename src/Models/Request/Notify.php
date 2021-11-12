@@ -1,8 +1,8 @@
 <?php
 
-namespace ByTIC\Omnipay\Mobilpay\Models\Request;
+namespace Paytic\Omnipay\Mobilpay\Models\Request;
 
-use ByTIC\Omnipay\Mobilpay\Models\Address;
+use Paytic\Omnipay\Mobilpay\Models\Address;
 use DOMDocument;
 use DOMElement;
 use Exception;

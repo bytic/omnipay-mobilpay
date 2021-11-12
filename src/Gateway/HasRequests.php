@@ -1,20 +1,20 @@
 <?php
 
-namespace ByTIC\Omnipay\Mobilpay\Gateway;
+namespace Paytic\Omnipay\Mobilpay\Gateway;
 
-use ByTIC\Omnipay\Mobilpay\Message\CompletePurchaseRequest;
-use ByTIC\Omnipay\Mobilpay\Message\PurchaseRequest;
-use ByTIC\Omnipay\Mobilpay\Message\ServerCompletePurchaseRequest;
-use ByTIC\Omnipay\Mobilpay\Message\Soap\Merchant\LogInRequest;
-use ByTIC\Omnipay\Mobilpay\Message\Soap\Merchant\RegisterCompanyRequest;
-use ByTIC\Omnipay\Mobilpay\Message\Soap\Merchant\ValidateRequestRequest;
-use ByTIC\Omnipay\Mobilpay\Message\Soap\Payment\CancelRecurrenceRequest;
-use ByTIC\Omnipay\Mobilpay\Message\Soap\Payment\DoPayTRequest;
+use Paytic\Omnipay\Mobilpay\Message\CompletePurchaseRequest;
+use Paytic\Omnipay\Mobilpay\Message\PurchaseRequest;
+use Paytic\Omnipay\Mobilpay\Message\ServerCompletePurchaseRequest;
+use Paytic\Omnipay\Mobilpay\Message\Soap\Merchant\LogInRequest;
+use Paytic\Omnipay\Mobilpay\Message\Soap\Merchant\RegisterCompanyRequest;
+use Paytic\Omnipay\Mobilpay\Message\Soap\Merchant\ValidateRequestRequest;
+use Paytic\Omnipay\Mobilpay\Message\Soap\Payment\CancelRecurrenceRequest;
+use Paytic\Omnipay\Mobilpay\Message\Soap\Payment\DoPayTRequest;
 use Omnipay\Common\Message\RequestInterface;
 
 /**
  * Trait HasRequests
- * @package ByTIC\Omnipay\Mobilpay\Gateway
+ * @package Paytic\Omnipay\Mobilpay\Gateway
  */
 trait HasRequests
 {

@@ -1,19 +1,19 @@
 <?php
 
-namespace ByTIC\Omnipay\Mobilpay\Message;
+namespace Paytic\Omnipay\Mobilpay\Message;
 
 use ByTIC\Omnipay\Common\Library\Signer;
 use ByTIC\Omnipay\Common\Message\Traits\HasLanguageRequestTrait;
 use ByTIC\Omnipay\Common\Message\Traits\RequestDataGetWithValidationTrait;
-use ByTIC\Omnipay\Mobilpay\Models\Address;
-use ByTIC\Omnipay\Mobilpay\Models\Invoice;
-use ByTIC\Omnipay\Mobilpay\Models\PaymentRecurrence;
-use ByTIC\Omnipay\Mobilpay\Models\PaymentSplit;
-use ByTIC\Omnipay\Mobilpay\Models\Request\Card;
+use Paytic\Omnipay\Mobilpay\Models\Address;
+use Paytic\Omnipay\Mobilpay\Models\Invoice;
+use Paytic\Omnipay\Mobilpay\Models\PaymentRecurrence;
+use Paytic\Omnipay\Mobilpay\Models\PaymentSplit;
+use Paytic\Omnipay\Mobilpay\Models\Request\Card;
 
 /**
  * Class PurchaseRequest
- * @package ByTIC\Omnipay\Mobilpay\Message
+ * @package Paytic\Omnipay\Mobilpay\Message
  *
  * @method PurchaseResponse send()
  */

@@ -1,10 +1,10 @@
 <?php
 
-namespace ByTIC\Omnipay\Mobilpay\Message\Soap\Traits;
+namespace Paytic\Omnipay\Mobilpay\Message\Soap\Traits;
 
 /**
  * Trait HasSessionId
- * @package ByTIC\Omnipay\Mobilpay\Message\Soap\Traits
+ * @package Paytic\Omnipay\Mobilpay\Message\Soap\Traits
  */
 trait HasSessionId
 {

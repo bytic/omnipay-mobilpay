@@ -1,10 +1,10 @@
 <?php
 
-namespace ByTIC\Omnipay\Mobilpay\Models\Request;
+namespace Paytic\Omnipay\Mobilpay\Models\Request;
 
-use ByTIC\Omnipay\Mobilpay\Models\Invoice;
-use ByTIC\Omnipay\Mobilpay\Models\PaymentRecurrence;
-use ByTIC\Omnipay\Mobilpay\Models\PaymentSplit;
+use Paytic\Omnipay\Mobilpay\Models\Invoice;
+use Paytic\Omnipay\Mobilpay\Models\PaymentRecurrence;
+use Paytic\Omnipay\Mobilpay\Models\PaymentSplit;
 use DOMElement;
 use Exception;
 

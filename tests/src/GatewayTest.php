@@ -1,9 +1,9 @@
 <?php
 
-namespace ByTIC\Omnipay\Mobilpay\Tests;
+namespace Paytic\Omnipay\Mobilpay\Tests;
 
-use ByTIC\Omnipay\Mobilpay\Gateway;
-use ByTIC\Omnipay\Mobilpay\Message\PurchaseRequest;
+use Paytic\Omnipay\Mobilpay\Gateway;
+use Paytic\Omnipay\Mobilpay\Message\PurchaseRequest;
 
 /**
  * Class HelperTest

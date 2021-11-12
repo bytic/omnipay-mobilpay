@@ -1,17 +1,17 @@
 <?php
 
-namespace ByTIC\Omnipay\Mobilpay\Tests\Message;
+namespace Paytic\Omnipay\Mobilpay\Tests\Message;
 
-use ByTIC\Omnipay\Mobilpay\Message\PurchaseRequest;
-use ByTIC\Omnipay\Mobilpay\Message\PurchaseResponse;
-use ByTIC\Omnipay\Mobilpay\Models\PaymentSplit;
-use ByTIC\Omnipay\Mobilpay\Models\Request\Card;
+use Paytic\Omnipay\Mobilpay\Message\PurchaseRequest;
+use Paytic\Omnipay\Mobilpay\Message\PurchaseResponse;
+use Paytic\Omnipay\Mobilpay\Models\PaymentSplit;
+use Paytic\Omnipay\Mobilpay\Models\Request\Card;
 use Http\Discovery\Psr17FactoryDiscovery;
 use Omnipay\Common\Exception\InvalidRequestException;
 
 /**
  * Class PurchaseRequestTest
- * @package ByTIC\Omnipay\Mobilpay\Tests\Message
+ * @package Paytic\Omnipay\Mobilpay\Tests\Message
  */
 class PurchaseRequestTest extends AbstractRequestTest
 {

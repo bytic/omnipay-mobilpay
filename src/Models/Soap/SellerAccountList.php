@@ -1,10 +1,10 @@
 <?php
 
-namespace ByTIC\Omnipay\Mobilpay\Models\Soap;
+namespace Paytic\Omnipay\Mobilpay\Models\Soap;
 
 /**
  * Class SellerAccountList
- * @package ByTIC\Omnipay\Mobilpay\Models\Soap
+ * @package Paytic\Omnipay\Mobilpay\Models\Soap
  */
 class SellerAccountList extends AbstractListModel
 {

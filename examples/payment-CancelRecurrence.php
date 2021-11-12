@@ -1,6 +1,6 @@
 <?php
 
-use ByTIC\Omnipay\Mobilpay\Models\Soap\Person;
+use Paytic\Omnipay\Mobilpay\Models\Soap\Person;
 
 $gateway = require '_init.php';
 

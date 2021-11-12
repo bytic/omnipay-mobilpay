@@ -1,12 +1,12 @@
 <?php
 
-namespace ByTIC\Omnipay\Mobilpay\Models\Soap\Traits;
+namespace Paytic\Omnipay\Mobilpay\Models\Soap\Traits;
 
-use ByTIC\Omnipay\Mobilpay\Utils\Constants;
+use Paytic\Omnipay\Mobilpay\Utils\Constants;
 
 /**
  * Trait HasPaymentMethods
- * @package ByTIC\Omnipay\Mobilpay\Models\Soap\Traits
+ * @package Paytic\Omnipay\Mobilpay\Models\Soap\Traits
  */
 trait HasPaymentMethods
 {

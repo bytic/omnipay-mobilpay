@@ -1,10 +1,10 @@
 <?php
 
-namespace ByTIC\Omnipay\Mobilpay\Message;
+namespace Paytic\Omnipay\Mobilpay\Message;
 
 use ByTIC\Omnipay\Common\Library\Signer;
 use ByTIC\Omnipay\Common\Message\Traits\GatewayNotificationRequestTrait;
-use ByTIC\Omnipay\Mobilpay\Models\Request\AbstractRequest as MobilPayAbstractRequest;
+use Paytic\Omnipay\Mobilpay\Models\Request\AbstractRequest as MobilPayAbstractRequest;
 use Exception;
 
 /**
@@ -117,7 +117,7 @@ class ServerCompletePurchaseRequest extends AbstractRequest
 
     /**
      * @param $xml
-     * @return \ByTIC\Omnipay\Mobilpay\Models\Request\Notify
+     * @return \Paytic\Omnipay\Mobilpay\Models\Request\Notify
      */
     public function getMobilPayNotify($xml)
     {
@@ -129,7 +129,7 @@ class ServerCompletePurchaseRequest extends AbstractRequest
 
     /**
      * @param $xml
-     * @return \ByTIC\Omnipay\Mobilpay\Models\Request\Card
+     * @return \Paytic\Omnipay\Mobilpay\Models\Request\Card
      */
     public function parseXml($xml)
     {

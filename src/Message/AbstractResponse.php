@@ -1,13 +1,13 @@
 <?php
 
-namespace ByTIC\Omnipay\Mobilpay\Message;
+namespace Paytic\Omnipay\Mobilpay\Message;
 
 use ByTIC\Omnipay\Common\Message\Traits\DataAccessorsTrait;
 use Omnipay\Common\Message\AbstractResponse as CommonAbstractResponse;
 
 /**
  * Class Response
- * @package ByTIC\Omnipay\Mobilpay\Message
+ * @package Paytic\Omnipay\Mobilpay\Message
  */
 abstract class AbstractResponse extends CommonAbstractResponse
 {

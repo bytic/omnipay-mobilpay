@@ -1,6 +1,6 @@
 <?php
 
-namespace ByTIC\Omnipay\Mobilpay\Models;
+namespace Paytic\Omnipay\Mobilpay\Models;
 
 use DOMDocument;
 use DOMElement;
@@ -8,7 +8,7 @@ use Exception;
 
 /**
  * Class PaymentRecurrence
- * @package ByTIC\Omnipay\Mobilpay\Models
+ * @package Paytic\Omnipay\Mobilpay\Models
  */
 class PaymentRecurrence
 {

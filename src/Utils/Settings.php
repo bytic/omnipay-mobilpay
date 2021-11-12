@@ -1,10 +1,10 @@
 <?php
 
-namespace ByTIC\Omnipay\Mobilpay\Utils;
+namespace Paytic\Omnipay\Mobilpay\Utils;
 
 /**
  * Class Settings
- * @package ByTIC\Omnipay\Mobilpay
+ * @package Paytic\Omnipay\Mobilpay
  */
 class Settings
 {

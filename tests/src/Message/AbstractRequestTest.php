@@ -1,15 +1,15 @@
 <?php
 
-namespace ByTIC\Omnipay\Mobilpay\Tests\Message;
+namespace Paytic\Omnipay\Mobilpay\Tests\Message;
 
-use ByTIC\Omnipay\Mobilpay\Message\AbstractRequest;
-use ByTIC\Omnipay\Mobilpay\Tests\Traits\HasTestUtilMethods;
+use Paytic\Omnipay\Mobilpay\Message\AbstractRequest;
+use Paytic\Omnipay\Mobilpay\Tests\Traits\HasTestUtilMethods;
 use Omnipay\Tests\TestCase;
 use Symfony\Component\HttpFoundation\Request as HttpRequest;
 
 /**
  * Class AbstractRequestTest
- * @package ByTIC\Omnipay\Mobilpay\Tests\Message
+ * @package Paytic\Omnipay\Mobilpay\Tests\Message
  */
 abstract class AbstractRequestTest extends TestCase
 {

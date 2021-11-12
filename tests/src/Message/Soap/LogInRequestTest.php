@@ -1,15 +1,15 @@
 <?php /** @noinspection PhpComposerExtensionStubsInspection */
 
-namespace ByTIC\Omnipay\Mobilpay\Tests\Message\Soap;
+namespace Paytic\Omnipay\Mobilpay\Tests\Message\Soap;
 
-use ByTIC\Omnipay\Mobilpay\Message\Soap\Merchant\LogInRequest;
-use ByTIC\Omnipay\Mobilpay\Message\Soap\SoapResponse;
-use ByTIC\Omnipay\Mobilpay\Tests\AbstractTest;
+use Paytic\Omnipay\Mobilpay\Message\Soap\Merchant\LogInRequest;
+use Paytic\Omnipay\Mobilpay\Message\Soap\SoapResponse;
+use Paytic\Omnipay\Mobilpay\Tests\AbstractTest;
 use SoapClient;
 
 /**
  * Class LogInRequestTest
- * @package ByTIC\Omnipay\Mobilpay\Tests\Message\Soap
+ * @package Paytic\Omnipay\Mobilpay\Tests\Message\Soap
  */
 class LogInRequestTest extends AbstractTest
 {

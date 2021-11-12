@@ -1,12 +1,12 @@
 <?php
 
-namespace ByTIC\Omnipay\Mobilpay\Message\Soap\Payment;
+namespace Paytic\Omnipay\Mobilpay\Message\Soap\Payment;
 
-use ByTIC\Omnipay\Mobilpay\Message\Soap\SoapResponse;
+use Paytic\Omnipay\Mobilpay\Message\Soap\SoapResponse;
 
 /**
  * Class DoPayTResponse
- * @package ByTIC\Omnipay\Mobilpay\Message\Soap\Payment
+ * @package Paytic\Omnipay\Mobilpay\Message\Soap\Payment
  */
 class DoPayTResponse extends SoapResponse
 {
