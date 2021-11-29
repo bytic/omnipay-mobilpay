@@ -71,9 +71,9 @@ class PurchaseRequestTest extends AbstractRequestTest
 
         //Validate first Response
         $body = $gatewayResponse->getBody()->__toString();
-        self::assertRegexp('/Transaction ID/', $body);
-        self::assertRegexp('/Payment description/', $body);
-        self::assertRegexp('/Merchant website/', $body);
+        self::assertMatchesRegularExpression('/Transaction ID/', $body);
+        self::assertMatchesRegularExpression('/Payment description/', $body);
+        self::assertMatchesRegularExpression('/Merchant website/', $body);
     }
 
     public function test_generateMobilpayPaymentSplit()

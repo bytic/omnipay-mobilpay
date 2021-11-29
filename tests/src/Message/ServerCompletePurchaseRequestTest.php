@@ -2,7 +2,7 @@
 
 namespace Paytic\Omnipay\Mobilpay\Tests\Message;
 
-use ByTIC\Omnipay\Common\Models\Token;
+use Paytic\Omnipay\Common\Models\Token;
 use Paytic\Omnipay\Mobilpay\Message\ServerCompletePurchaseRequest;
 use Paytic\Omnipay\Mobilpay\Message\ServerCompletePurchaseResponse;
 use Paytic\Omnipay\Mobilpay\Models\Address;

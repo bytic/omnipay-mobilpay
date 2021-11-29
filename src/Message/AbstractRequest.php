@@ -2,7 +2,7 @@
 
 namespace Paytic\Omnipay\Mobilpay\Message;
 
-use ByTIC\Omnipay\Common\Message\Traits\SendDataRequestTrait;
+use Paytic\Omnipay\Common\Message\Traits\SendDataRequestTrait;
 use Paytic\Omnipay\Mobilpay\Utils\Traits\HasOrderId;
 use Paytic\Omnipay\Mobilpay\Utils\Traits\HasSecurityParams;
 use Omnipay\Common\Message\AbstractRequest as OmnipayAbstractRequest;

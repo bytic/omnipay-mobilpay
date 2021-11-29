@@ -2,9 +2,9 @@
 
 namespace Paytic\Omnipay\Mobilpay\Message;
 
-use ByTIC\Omnipay\Common\Message\Traits\GatewayNotificationResponseTrait;
-use ByTIC\Omnipay\Common\Message\Traits\HasTokenTrait;
-use ByTIC\Omnipay\Common\Models\Token;
+use Paytic\Omnipay\Common\Message\Traits\GatewayNotificationResponseTrait;
+use Paytic\Omnipay\Common\Message\Traits\HasTokenTrait;
+use Paytic\Omnipay\Common\Models\Token;
 use Paytic\Omnipay\Mobilpay\Models\Request\Card;
 use Paytic\Omnipay\Mobilpay\Models\Request\Notify;
 use DateTime;

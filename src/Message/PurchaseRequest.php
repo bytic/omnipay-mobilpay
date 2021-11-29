@@ -2,9 +2,9 @@
 
 namespace Paytic\Omnipay\Mobilpay\Message;
 
-use ByTIC\Omnipay\Common\Library\Signer;
-use ByTIC\Omnipay\Common\Message\Traits\HasLanguageRequestTrait;
-use ByTIC\Omnipay\Common\Message\Traits\RequestDataGetWithValidationTrait;
+use Paytic\Omnipay\Common\Library\Signer;
+use Paytic\Omnipay\Common\Message\Traits\HasLanguageRequestTrait;
+use Paytic\Omnipay\Common\Message\Traits\RequestDataGetWithValidationTrait;
 use Paytic\Omnipay\Mobilpay\Models\Address;
 use Paytic\Omnipay\Mobilpay\Models\Invoice;
 use Paytic\Omnipay\Mobilpay\Models\PaymentRecurrence;

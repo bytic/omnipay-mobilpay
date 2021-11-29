@@ -2,7 +2,7 @@
 
 namespace Paytic\Omnipay\Mobilpay\Message;
 
-use ByTIC\Omnipay\Common\Message\Traits\GatewayNotificationRequestTrait;
+use Paytic\Omnipay\Common\Message\Traits\GatewayNotificationRequestTrait;
 
 /**
  * Class PurchaseResponse

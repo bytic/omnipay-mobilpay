@@ -2,8 +2,8 @@
 
 namespace Paytic\Omnipay\Mobilpay\Message;
 
-use ByTIC\Omnipay\Common\Library\Signer;
-use ByTIC\Omnipay\Common\Message\Traits\GatewayNotificationRequestTrait;
+use Paytic\Omnipay\Common\Library\Signer;
+use Paytic\Omnipay\Common\Message\Traits\GatewayNotificationRequestTrait;
 use Paytic\Omnipay\Mobilpay\Models\Request\AbstractRequest as MobilPayAbstractRequest;
 use Exception;
 
