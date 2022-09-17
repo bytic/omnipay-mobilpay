@@ -1,9 +1,12 @@
-<?php /** @noinspection PhpComposerExtensionStubsInspection */
+<?php
+
+declare(strict_types=1);
 
 namespace Paytic\Omnipay\Mobilpay\Message\Soap;
 
-use Paytic\Omnipay\Mobilpay\Utils\Settings;
+use Exception;
 use Omnipay\Common\Message\AbstractRequest as OmnipayAbstractRequest;
+use Paytic\Omnipay\Mobilpay\Utils\Settings;
 use SoapClient;
 use SoapFault;
 
@@ -53,7 +56,7 @@ abstract class AbstractSoapRequest extends OmnipayAbstractRequest
      * Build the SOAP Client and the internal request object
      *
      * @return SoapClient
-     * @throws \Exception
+     * @throws Exception
      */
     public function buildSoapClient()
     {
@@ -82,21 +85,21 @@ abstract class AbstractSoapRequest extends OmnipayAbstractRequest
         ];
 
         // if we're in test mode, don't cache the wsdl
-        if ($this->getTestMode()) {
-            $soap_options['cache_wsdl'] = WSDL_CACHE_NONE;
-        } else {
-            $soap_options['cache_wsdl'] = WSDL_CACHE_BOTH;
-        }
+//        if ($this->getTestMode()) {
+//            $soap_options['cache_wsdl'] = WSDL_CACHE_NONE;
+//        } else {
+//            $soap_options['cache_wsdl'] = WSDL_CACHE_BOTH;
+//        }
 
         $soap_options['cache_wsdl'] = WSDL_CACHE_NONE;
 
         try {
             // create the soap client
-            $this->soapClient = new \SoapClient($this->getEndpoint(), $soap_options);
+            $this->soapClient = new SoapClient($this->getEndpoint(), $soap_options);
 
             return $this->soapClient;
-        } catch (SoapFault $sf) {
-            throw new \Exception($sf->getMessage(), $sf->getCode());
+        } catch (SoapFault $soapFault) {
+            throw new Exception($soapFault->getMessage(), $soapFault->getCode());
         }
     }
 
@@ -105,7 +108,7 @@ abstract class AbstractSoapRequest extends OmnipayAbstractRequest
      *
      * @param array $data
      * @return SoapResponse
-     * @throws \Exception
+     * @throws Exception
      */
     public function sendData($data)
     {
@@ -128,7 +131,7 @@ abstract class AbstractSoapRequest extends OmnipayAbstractRequest
      * @param SoapClient $soapClient
      * @param array $data
      * @return array
-     * @throws \Exception
+     * @throws Exception
      */
     abstract protected function runTransaction($soapClient, $data);
 
@@ -137,15 +140,14 @@ abstract class AbstractSoapRequest extends OmnipayAbstractRequest
      * @param $method
      * @param array $data
      * @return mixed
-     * @throws \Exception
+     * @throws Exception
      */
     protected function runSoapTransaction($soapClient, $method, $data = [])
     {
         try {
             return $soapClient->$method($data);
-            return $soapClient->__soapCall($method, $data);
+//            return $soapClient->__soapCall($method, $data);
         } catch (SoapFault $soapFault) {
-            var_dump($soapClient->__getFunctions());
             return [
                 "code" => $soapFault->faultcode,
                 "message" => $soapFault->getMessage(),

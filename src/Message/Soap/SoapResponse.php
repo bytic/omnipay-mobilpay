@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Paytic\Omnipay\Mobilpay\Message\Soap;
 
 /**
@@ -14,6 +16,6 @@ class SoapResponse extends AbstractSoapResponse
      */
     public function isSuccessful()
     {
-        // TODO: Implement isSuccessful() method.
+        return false;
     }
 }

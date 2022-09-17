@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Paytic\Omnipay\Mobilpay\Message\Soap\Payment;
 
 use Paytic\Omnipay\Mobilpay\Message\Soap\AbstractSoapRequest;
@@ -13,6 +15,7 @@ use Paytic\Omnipay\Mobilpay\Utils\Settings;
  */
 abstract class AbstractPaymentSoapRequest extends AbstractSoapRequest
 {
+
     use HasSessionId;
     use HasSacId;
 
