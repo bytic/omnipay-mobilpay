@@ -1,13 +1,15 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Paytic\Omnipay\Mobilpay\Tests\Message;
 
+use Http\Discovery\Psr17FactoryDiscovery;
+use Omnipay\Common\Exception\InvalidRequestException;
 use Paytic\Omnipay\Mobilpay\Message\PurchaseRequest;
 use Paytic\Omnipay\Mobilpay\Message\PurchaseResponse;
 use Paytic\Omnipay\Mobilpay\Models\PaymentSplit;
 use Paytic\Omnipay\Mobilpay\Models\Request\Card;
-use Http\Discovery\Psr17FactoryDiscovery;
-use Omnipay\Common\Exception\InvalidRequestException;
 
 /**
  * Class PurchaseRequestTest
@@ -71,6 +73,7 @@ class PurchaseRequestTest extends AbstractRequestTest
 
         //Validate first Response
         $body = $gatewayResponse->getBody()->__toString();
+
         self::assertMatchesRegularExpression('/Transaction ID/', $body);
         self::assertMatchesRegularExpression('/Payment description/', $body);
         self::assertMatchesRegularExpression('/Merchant website/', $body);

@@ -6,6 +6,7 @@ namespace Paytic\Omnipay\Mobilpay\Message\Soap;
 
 use Omnipay\Common\Message\AbstractResponse;
 use Omnipay\Common\Message\RequestInterface;
+use Paytic\Omnipay\Common\Message\Traits\DataAccessorsTrait;
 
 /**
  * Class AbstractSoapResponse
@@ -13,6 +14,8 @@ use Omnipay\Common\Message\RequestInterface;
  */
 abstract class AbstractSoapResponse extends AbstractResponse
 {
+    use DataAccessorsTrait;
+
     /**
      * Constructor
      *
