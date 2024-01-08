@@ -19,7 +19,7 @@ abstract class AbstractSoapRequest extends OmnipayAbstractRequest
     /**
      * @return mixed
      */
-    public function getSoapEndpoint()
+    public function getEndpoint()
     {
         return Settings::SOAP_MERCHANT_LIVE;
     }
