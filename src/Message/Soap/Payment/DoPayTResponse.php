@@ -30,6 +30,10 @@ class DoPayTResponse extends SoapResponse
             return $this->data['doPayTResult']['errors']['code'];
         }
 
+        if (isset($this->data['code'])) {
+            return $this->data['code'];
+        }
+
         return parent::getCode();
     }
 
@@ -45,6 +49,9 @@ class DoPayTResponse extends SoapResponse
             }
 
             return $message;
+        }
+        if (isset($this->data['message'])) {
+            return $this->data['message'];
         }
 
         return parent::getCode();

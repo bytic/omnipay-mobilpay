@@ -45,5 +45,11 @@
     "vlucas/phpdotenv": "^2.3",
     "nyholm/psr7": ">=1",
     "symfony/http-client": "^5.0|^6.0"
+  },
+  "config": {
+    "allow-plugins": {
+      "php-http/discovery": true,
+      "dealerdirect/phpcodesniffer-composer-installer": true
+    }
   }
 }
