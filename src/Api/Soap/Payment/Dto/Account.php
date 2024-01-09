@@ -18,8 +18,10 @@ class Account extends stdClass
     public string $user_name = '';
 
     //the IP address of the buyer.
-    public string $customer_ip = '';
+    public ?string $customer_ip = null;
 
     //this is where mobilPay will send the payment result. This has priority over the SOAP call response
     public string $confirm_url = '';
+
+    public string $hash = '';
 }

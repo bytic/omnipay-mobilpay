@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Paytic\Omnipay\Mobilpay\Message\Soap\Payment;
 
+use Paytic\Omnipay\Mobilpay\Api\Soap\Payment\Dto\Request;
 use Paytic\Omnipay\Mobilpay\Message\Soap\SoapResponse;
 
 /**
@@ -79,5 +80,10 @@ class DoPayTResponse extends SoapResponse
         }
 
         return parent::getTransactionReference();
+    }
+
+    public function getSessionDebug(): ?Request
+    {
+        return $this->request->getSessionDebug();
     }
 }

@@ -32,7 +32,7 @@ class RequestFactory
         $request->order = OrderFactory::fromMessage($this->requestMessage)->build();
 
         $request->account = AccountFactory::fromMessage($this->requestMessage)->build();
-        $request->account->hash = HashRequest::fromRequest($request, $this->requestMessage->getPassword());
+        $request->account->hash = HashRequest::fromRequest($request, $this->requestMessage->getPassword())->calculate();
 
         $request->transaction = Transaction::fromToken($this->requestMessage->getToken());
 
