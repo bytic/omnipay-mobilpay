@@ -26,5 +26,16 @@ class Order extends stdClass
     public ?Party $billing = null;
 //    public ?Party $shipping = null;
 
+    public function setAmount($amount): self
+    {
+        if (is_float($amount)) {
+            $this->amount = $amount;
 
+            return $this;
+        }
+
+        $this->amount = floatval($amount);
+
+        return $this;
+    }
 }

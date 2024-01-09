@@ -34,7 +34,7 @@ class OrderFactory
 
         $order->description = $this->requestMessage->getDescription();
 
-        $order->amount = floatval($this->requestMessage->getAmount());
+        $order->setAmount($this->requestMessage->getAmount());
         $order->currency = $this->requestMessage->getCurrency();
         $order->billing = PartyFactory::billingFromCard($card);
 
