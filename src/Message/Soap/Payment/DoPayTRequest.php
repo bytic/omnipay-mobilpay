@@ -20,6 +20,8 @@ class DoPayTRequest extends AbstractPaymentSoapRequest
     use HasSecurityParams;
     use HasOrderId;
 
+    protected ?Request $requestData = null;
+
     /**
      * @inheritDoc
      */
@@ -44,9 +46,18 @@ class DoPayTRequest extends AbstractPaymentSoapRequest
         ];
     }
 
+    public function getSessionDebug(): ?Request
+    {
+        return $this->requestData;
+    }
+
     protected function buildRequest(): Request
     {
-        return RequestFactory::fromMessage($this)->build();
+        if ($this->requestData === null) {
+            $this->requestData = RequestFactory::fromMessage($this)->build();
+        }
+
+        return $this->requestData;
     }
 
     /**
