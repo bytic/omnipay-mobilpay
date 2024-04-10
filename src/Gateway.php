@@ -2,12 +2,11 @@
 
 namespace Paytic\Omnipay\Mobilpay;
 
+use Omnipay\Common\Message\RequestInterface;
+use Paytic\Omnipay\Common\Gateway\AbstractGateway;
 use Paytic\Omnipay\Common\Gateway\Traits\HasLanguageTrait;
 use Paytic\Omnipay\Mobilpay\Gateway\HasParameters;
 use Paytic\Omnipay\Mobilpay\Gateway\HasRequests;
-use Paytic\Omnipay\Mobilpay\Utils\Settings;
-use Omnipay\Common\AbstractGateway;
-use Omnipay\Common\Message\RequestInterface;
 
 /**
  * Class Gateway
@@ -21,8 +20,7 @@ use Omnipay\Common\Message\RequestInterface;
  * @method RequestInterface createCard(array $options = [])
  * @method RequestInterface updateCard(array $options = [])
  * @method RequestInterface deleteCard(array $options = [])
- * @method \Omnipay\Common\Message\NotificationInterface acceptNotification(array $options = array())
- * @method \Omnipay\Common\Message\RequestInterface fetchTransaction(array $options = [])
+ * @method RequestInterface fetchTransaction(array $options = [])
  */
 class Gateway extends AbstractGateway
 {
