@@ -2,6 +2,10 @@
 
 namespace Paytic\Omnipay\Mobilpay\Utils\Traits;
 
+use Paytic\Omnipay\Mobilpay\Gateway;
+use Paytic\Omnipay\Mobilpay\Message\AbstractRequest;
+use Paytic\Omnipay\Mobilpay\Message\Soap\Payment\DoPayTRequest;
+
 /**
  * Trait HasSecurityParams
  * @package Paytic\Omnipay\Mobilpay\Utils\Traits
@@ -38,10 +42,7 @@ trait HasSecurityParams
      */
     public function setCertificate($value)
     {
-        if (file_exists($value)) {
-            $value = file_get_contents($value);
-        }
-        return $this->setParameter('certificate', $value);
+        return $this->setParameterWithFileCheck($value, 'certificate');
     }
 
     /**
@@ -57,9 +58,20 @@ trait HasSecurityParams
      */
     public function setPrivateKey($value)
     {
-        if (file_exists($value)) {
+        return $this->setParameterWithFileCheck($value, 'privateKey');
+    }
+
+    /**
+     * @param $value
+     * @param $parameter
+     * @return Gateway|AbstractRequest|DoPayTRequest
+     */
+    protected function setParameterWithFileCheck($value, $parameter)
+    {
+        if ($value && !empty($value) && file_exists($value)) {
             $value = file_get_contents($value);
         }
-        return $this->setParameter('privateKey', $value);
+
+        return $this->setParameter($parameter, $value);
     }
 }
