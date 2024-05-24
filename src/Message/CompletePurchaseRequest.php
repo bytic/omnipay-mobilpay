@@ -28,6 +28,7 @@ class CompletePurchaseRequest extends AbstractRequest
      */
     public function isValidNotification()
     {
-        return $this->hasGET('orderId');
+        return $this->hasGET('orderId')
+            && $this->httpRequest->query->count() < 3;
     }
 }
